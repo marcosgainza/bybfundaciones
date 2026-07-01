@@ -1,0 +1,168 @@
+---
+import ImageSlot from './ImageSlot.astro';
+import { site } from '../data/site';
+---
+
+<section id="inicio" class="hero section">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>Ingeniería geotécnica · {site.city} · {site.region}</span>
+      </div>
+      <h1 class="hero-title">Ingeniería aplicada a la estabilización de fundaciones.</h1>
+      <p class="hero-lead">
+        Desarrollamos soluciones de ingeniería para el mejoramiento de suelos y la
+        estabilización de fundaciones mediante técnicas de inyección controlada,
+        adaptadas a las condiciones particulares de cada estructura y de cada terreno.
+      </p>
+      <p class="hero-sub">
+        Intervenimos viviendas, edificios e instalaciones con asentamientos, grietas,
+        hundimientos u oquedades, priorizando el análisis técnico, la seguridad
+        estructural y la mínima afectación de la obra existente.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary cta-pulse">Solicitar evaluación técnica →</a>
+        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <div class="hero-frame">
+        <ImageSlot
+          alt="Obra de inyección controlada de B&B Ingeniería"
+          placeholder="Foto de obra / inyección"
+          height="clamp(360px,42vw,480px)"
+          loading="eager"
+        />
+      </div>
+      <div class="hero-chip">
+        <div class="hero-chip-k">Método</div>
+        <div class="hero-chip-v">Inyección controlada</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    background: linear-gradient(180deg, #fff 0%, var(--mist) 100%);
+  }
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(13, 43, 91, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13, 43, 91, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    mask-image: linear-gradient(180deg, #000, transparent 88%);
+  }
+  .hero-inner {
+    position: relative;
+    padding-block: clamp(48px, 7vw, 96px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    gap: clamp(28px, 4vw, 60px);
+    align-items: center;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #e0e3e8;
+    padding: 7px 14px;
+    border-radius: 100px;
+    box-shadow: 0 1px 2px rgba(13, 43, 91, 0.04);
+  }
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--navy);
+  }
+  .badge span:last-child {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .hero-title {
+    margin-top: 24px;
+    font-weight: 800;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+  }
+  .hero-lead {
+    margin-top: 22px;
+    max-width: 54ch;
+    font-size: clamp(16px, 1.4vw, 18.5px);
+    line-height: 1.6;
+    color: #3a4150;
+  }
+  .hero-sub {
+    margin-top: 16px;
+    max-width: 54ch;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: #5a616e;
+  }
+  .hero-actions {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+  }
+  .hero-media {
+    position: relative;
+    min-width: 0;
+  }
+  .hero-frame {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -24px rgba(13, 43, 91, 0.4);
+    border: 1px solid #e0e3e8;
+  }
+  .hero-chip {
+    position: absolute;
+    left: -14px;
+    bottom: -14px;
+    background: var(--navy);
+    color: #fff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px -10px rgba(13, 43, 91, 0.5);
+  }
+  .hero-chip-k {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #9db2d6;
+  }
+  .hero-chip-v {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 860px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .hero-media {
+      order: -1;
+    }
+    .hero-chip {
+      left: 12px;
+    }
+  }
+</style>

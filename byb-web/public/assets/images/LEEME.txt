@@ -1,0 +1,29 @@
+FOTOS DE LA WEB
+================
+
+Dejá las fotos reales en esta carpeta y después indicá su nombre en el componente
+correspondiente (propiedad `src`). Mientras no haya foto, se muestra un placeholder.
+
+Fotos que faltan y dónde se usan:
+
+1) HERO (foto principal, arriba)
+   Archivo sugerido:  hero.jpg
+   Componente:        src/components/Hero.astro
+   Cómo activarla:    en <ImageSlot ... /> agregá  src="/assets/images/hero.jpg"
+
+2) CASOS (3 fotos de obras)
+   Archivos sugeridos: caso-1.jpg, caso-2.jpg, caso-3.jpg
+   Componente:         src/components/Cases.astro
+   (agregar el src en cada <ImageSlot> de la lista de casos)
+
+3) NOSOTROS (foto de Bruno y Fausto)
+   Archivo sugerido:  equipo.jpg
+   Componente:        src/components/About.astro
+
+4) OG-IMAGE (imagen para compartir en redes/WhatsApp) — MUY recomendada para SEO
+   Archivo:           public/assets/og-image.jpg   (medida 1200 x 630 px)
+   Ya está referenciada en el SEO; solo falta el archivo.
+
+Recomendaciones:
+- Formato .jpg o .webp, ancho aprox. 1600 px, optimizadas (peso < 300 KB).
+- Nombres sin espacios ni acentos.

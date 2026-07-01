@@ -1,0 +1,159 @@
+---
+import { withBase } from '../lib/url';
+
+const pieces = [
+  { cls: 'p-up', img: 'anim-up.png' },
+  { cls: 'p-down', img: 'anim-down.png' },
+  { cls: 'p-bleft', img: 'anim-bleft.png' },
+  { cls: 'p-bright', img: 'anim-bright.png' },
+  { cls: 'p-amp', img: 'anim-amp.png' },
+];
+
+const cards = [
+  { sym: 'B  B', symColor: 'var(--navy)', t: 'Las dos B', d: 'Bruno y Fausto Barbagelata, los dos socios.' },
+  { sym: '&', symColor: 'var(--gray)', t: 'La unión', d: 'El nexo que une a ambos en un mismo proyecto.' },
+  { sym: '↑', symColor: 'var(--navy)', t: 'Flecha ascendente', d: 'El refuerzo que levanta y estabiliza la estructura.' },
+  { sym: '↓', symColor: 'var(--gray)', t: 'Flecha descendente', d: 'La inyección controlada que llega al suelo de fundación.' },
+];
+---
+
+<section class="brandsec">
+  <div class="brand-bg" aria-hidden="true"></div>
+  <div class="container brand-inner">
+    <div class="eyebrow">La marca</div>
+    <h2 class="h2">Cómo se forma nuestro logo</h2>
+    <p class="brand-lead">
+      Cada elemento tiene un significado: las dos B de Barbagelata, la unión de ambos socios,
+      y las flechas que representan el refuerzo y la estabilización de las fundaciones.
+    </p>
+
+    <div class="brand-anim" aria-hidden="true">
+      {
+        pieces.map((p) => (
+          <div
+            class={`piece ${p.cls}`}
+            style={`background-image:url('${withBase('/assets/logo/' + p.img)}')`}
+          />
+        ))
+      }
+    </div>
+
+    <div class="brand-cards">
+      {
+        cards.map((c) => (
+          <div class="brand-card">
+            <div class="brand-sym" style={`color:${c.symColor}`}>{c.sym}</div>
+            <h3 class="brand-card-t">{c.t}</h3>
+            <p class="brand-card-d">{c.d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .brandsec {
+    position: relative;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .brand-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(13, 43, 91, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13, 43, 91, 0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 45%, #000, transparent 80%);
+  }
+  .brand-inner {
+    position: relative;
+    padding-block: clamp(56px, 7vw, 96px);
+    text-align: center;
+  }
+  .brand-lead {
+    margin: 16px auto 0;
+    max-width: 54ch;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4a515e;
+  }
+
+  .brand-anim {
+    margin: clamp(36px, 4vw, 52px) auto 0;
+    position: relative;
+    width: clamp(240px, 30vw, 330px);
+    aspect-ratio: 337 / 246;
+  }
+  .piece {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .p-up { animation: bbUp 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .p-down { animation: bbDown 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .p-bleft { animation: bbLeftB 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .p-bright { animation: bbRightB 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .p-amp { animation: bbAmp 6.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+
+  @keyframes bbLeftB { 0% { transform: translateX(-220px); opacity: 0; } 10% { opacity: 0; } 24% { transform: translateX(0); opacity: 1; } 86% { transform: translateX(0); opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes bbRightB { 0% { transform: translateX(220px); opacity: 0; } 10% { opacity: 0; } 24% { transform: translateX(0); opacity: 1; } 86% { transform: translateX(0); opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes bbAmp { 0% { transform: scale(0.2) rotate(-25deg); opacity: 0; } 26% { opacity: 0; transform: scale(0.2) rotate(-25deg); } 40% { transform: scale(1) rotate(0); opacity: 1; } 86% { opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes bbUp { 0% { transform: translateY(-150px); opacity: 0; } 42% { opacity: 0; transform: translateY(-150px); } 58% { transform: translateY(0); opacity: 1; } 86% { opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes bbDown { 0% { transform: translateY(150px); opacity: 0; } 58% { opacity: 0; transform: translateY(150px); } 74% { transform: translateY(0); opacity: 1; } 86% { opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes bbCap { 0%, 12% { opacity: 0; transform: translateY(8px); } 22% { opacity: 1; transform: none; } 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes bbCap2 { 0%, 30% { opacity: 0; transform: translateY(8px); } 40% { opacity: 1; transform: none; } 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes bbCap3 { 0%, 48% { opacity: 0; transform: translateY(8px); } 58% { opacity: 1; transform: none; } 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes bbCap4 { 0%, 64% { opacity: 0; transform: translateY(8px); } 74% { opacity: 1; transform: none; } 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+
+  .brand-cards {
+    margin: clamp(36px, 4vw, 52px) auto 0;
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .brand-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 16px;
+    background: #fff;
+  }
+  .brand-card:nth-child(1) { animation: bbCap 6.5s ease-in-out infinite; }
+  .brand-card:nth-child(2) { animation: bbCap2 6.5s ease-in-out infinite; }
+  .brand-card:nth-child(3) { animation: bbCap3 6.5s ease-in-out infinite; }
+  .brand-card:nth-child(4) { animation: bbCap4 6.5s ease-in-out infinite; }
+  .brand-sym {
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1;
+  }
+  .brand-card-t {
+    margin-top: 12px;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .brand-card-d {
+    margin-top: 6px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #5a616e;
+  }
+
+  @media (max-width: 720px) {
+    .brand-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 420px) {
+    .brand-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

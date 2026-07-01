@@ -1,0 +1,101 @@
+---
+import ImageSlot from './ImageSlot.astro';
+import { site } from '../data/site';
+---
+
+<section id="nosotros" class="section container about">
+  <div class="about-grid">
+    <div class="about-copy">
+      <div class="eyebrow">Quiénes somos</div>
+      <h2 class="h2">Ingeniería, experiencia y compromiso en cada intervención.</h2>
+      <p class="about-p">
+        {site.name} nace con el objetivo de brindar soluciones especializadas para la
+        estabilización de fundaciones y el mejoramiento de suelos, aplicando criterios de
+        ingeniería a problemas que requieren mucho más que una simple reparación.
+      </p>
+      <p class="about-p about-p-sm">
+        La empresa está integrada por los ingenieros civiles
+        <strong>{site.founders[0]}</strong> y <strong>{site.founders[1]}</strong>,
+        profesionales con amplia trayectoria en ingeniería geotécnica, estudios de suelos y
+        proyectos de ingeniería civil.
+      </p>
+      <p class="about-p about-p-sm">
+        No aplicamos soluciones estándar. Cada intervención comienza con una evaluación
+        técnica del problema, continúa con el diseño de una estrategia específica y finaliza
+        con una ejecución cuidadosamente controlada. Nuestro objetivo no es únicamente
+        reparar una fundación, sino devolver estabilidad a la estructura.
+      </p>
+      <div class="about-tags">
+        <span class="tag">Ingeniería civil</span>
+        <span class="tag">Geotecnia</span>
+        <span class="tag">Inyección controlada</span>
+      </div>
+    </div>
+
+    <div class="about-media">
+      <div class="about-frame">
+        <ImageSlot
+          alt={`${site.founders[0]} y ${site.founders[1]} — ${site.name}`}
+          placeholder="Foto de Bruno y Fausto Barbagelata"
+          height="clamp(320px,38vw,440px)"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-block: var(--section-pad-y);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: center;
+  }
+  .about-p {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.65;
+    color: #3a4150;
+  }
+  .about-p-sm {
+    margin-top: 14px;
+    font-size: 15.5px;
+    color: #4a515e;
+  }
+  .about-p strong {
+    color: var(--navy);
+  }
+  .about-tags {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tag {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--navy);
+    border: 1px solid #cbd0d8;
+    padding: 9px 15px;
+    border-radius: 100px;
+  }
+  .about-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e0e3e8;
+    box-shadow: 0 20px 50px -22px rgba(13, 43, 91, 0.35);
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .about-media {
+      order: -1;
+    }
+  }
+</style>

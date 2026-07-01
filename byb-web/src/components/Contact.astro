@@ -1,0 +1,196 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="contacto" class="section contact">
+  <div class="container contact-inner">
+    <div class="contact-copy">
+      <div class="eyebrow eyebrow-light">Contacto</div>
+      <h2 class="contact-title">¿Necesitás una evaluación técnica?</h2>
+      <p class="contact-lead">
+        Si tu vivienda o estructura presenta grietas, hundimientos, desniveles o cualquier
+        indicio de problemas en la fundación, podemos ayudarte a identificar su origen y
+        evaluar la intervención más adecuada.
+      </p>
+      <div class="contact-list">
+        <a class="contact-row" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">
+          <span class="contact-k">WhatsApp</span>
+          <span class="contact-v">{site.phoneDisplay}</span>
+        </a>
+        <a class="contact-row" href={`mailto:${site.email}`}>
+          <span class="contact-k">Email</span>
+          <span class="contact-v">{site.email}</span>
+        </a>
+        <div class="contact-row contact-row-static">
+          <span class="contact-k">Ubicación</span>
+          <span class="contact-v">{site.city}, {site.region}</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" data-reveal data-whatsapp={site.whatsapp}>
+      <div class="form-title">Solicitar evaluación técnica</div>
+      <div class="form-fields">
+        <label class="field">
+          <span>Nombre y apellido</span>
+          <input type="text" name="nombre" placeholder="Tu nombre" required />
+        </label>
+        <label class="field">
+          <span>Teléfono / WhatsApp</span>
+          <input type="text" name="telefono" placeholder="Cómo te contactamos" required />
+        </label>
+        <label class="field">
+          <span>Ubicación de la obra</span>
+          <input type="text" name="ubicacion" placeholder="Ciudad / barrio" />
+        </label>
+        <label class="field">
+          <span>Contanos el problema</span>
+          <textarea name="problema" rows="3" placeholder="Grietas, hundimientos, desniveles…"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary cta-pulse form-submit">Enviar por WhatsApp →</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--navy);
+    color: #fff;
+  }
+  .contact-inner {
+    padding-block: var(--section-pad-y);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  .eyebrow-light {
+    color: #9db2d6;
+  }
+  .contact-title {
+    margin-top: 14px;
+    font-weight: 800;
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+  }
+  .contact-lead {
+    margin-top: 20px;
+    max-width: 46ch;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: #c7d2e6;
+  }
+  .contact-list {
+    margin-top: 32px;
+    display: grid;
+    gap: 2px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  .contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    transition: color 0.2s ease;
+  }
+  a.contact-row:hover {
+    color: #9db2d6;
+  }
+  .contact-k {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #9db2d6;
+  }
+  .contact-v {
+    font-size: 17px;
+    font-weight: 700;
+    text-align: right;
+  }
+
+  .contact-form {
+    background: #fff;
+    color: var(--ink);
+    padding: clamp(26px, 3vw, 40px);
+    border-radius: 12px;
+  }
+  .form-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 22px;
+  }
+  .form-fields {
+    display: grid;
+    gap: 15px;
+  }
+  .field {
+    display: grid;
+    gap: 7px;
+  }
+  .field > span {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5a616e;
+  }
+  .field input,
+  .field textarea {
+    background: var(--mist);
+    border: 1px solid #dde1e7;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 15px;
+    padding: 13px 14px;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .field textarea {
+    resize: vertical;
+  }
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--navy);
+    background: #fff;
+  }
+  .form-submit {
+    margin-top: 4px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  @media (max-width: 860px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.contact-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const phone = form.dataset.whatsapp;
+      const data = new FormData(form);
+      const msg =
+        `Hola, quiero solicitar una evaluación técnica.%0A%0A` +
+        `*Nombre:* ${data.get('nombre') || '-'}%0A` +
+        `*Teléfono:* ${data.get('telefono') || '-'}%0A` +
+        `*Ubicación de la obra:* ${data.get('ubicacion') || '-'}%0A` +
+        `*Problema:* ${data.get('problema') || '-'}`;
+      window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+      form.reset();
+    });
+  }
+</script>

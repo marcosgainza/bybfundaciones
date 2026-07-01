@@ -1,0 +1,122 @@
+---
+import { services } from '../data/site';
+
+const icons = [
+  '<circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4-4"></path>',
+  '<path d="M12 2v7M9 5l3-3 3 3M5 22V11h14v11M9 22v-4h6v4"></path>',
+  '<path d="M3 17l6-6 4 4 8-8M3 21h18"></path>',
+  '<path d="M4 4h16v6H4zM7 10v4a5 5 0 0010 0v-4M12 18v3"></path>',
+];
+---
+
+<section id="servicios" class="section services">
+  <div class="container services-inner">
+    <div class="services-head">
+      <div class="eyebrow">Nuestros servicios</div>
+      <h2 class="h2">Soluciones de ingeniería para estabilizar fundaciones y mejorar el suelo.</h2>
+      <p class="services-intro">
+        Cada intervención se diseña en función de las características del terreno, la
+        estructura y el problema detectado. Antes de ejecutar cualquier trabajo, evaluamos
+        el origen de la falla para definir la metodología más adecuada en cada caso.
+      </p>
+    </div>
+
+    <div class="services-grid" data-reveal="group">
+      {
+        services.map((s, i) => (
+          <div class="service">
+            <div class="service-top">
+              <div class="service-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--navy)"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  set:html={icons[i]}
+                />
+              </div>
+              <div class="service-num">{s.id}</div>
+            </div>
+            <h3 class="service-t">{s.title}</h3>
+            <p class="service-p">{s.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--mist);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .services-inner {
+    padding-block: var(--section-pad-y);
+  }
+  .services-head {
+    max-width: 64ch;
+  }
+  .services-intro {
+    margin-top: 18px;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: #3a4150;
+  }
+  .services-grid {
+    margin-top: clamp(36px, 4vw, 52px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .service {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: clamp(26px, 2.5vw, 38px);
+  }
+  .service-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .service-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    background: #eaf0f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  .service-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--gray);
+  }
+  .service-t {
+    margin-top: 20px;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .service-p {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.62;
+    color: #4a515e;
+  }
+
+  @media (max-width: 720px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

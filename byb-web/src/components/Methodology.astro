@@ -1,0 +1,149 @@
+---
+const steps = [
+  {
+    n: '1',
+    title: 'Evaluación y diagnóstico',
+    text: 'Visita a obra para relevar la estructura, identificar síntomas y analizar las causas del problema.',
+  },
+  {
+    n: '2',
+    title: 'Diseño de la intervención',
+    text: 'Definimos metodología, puntos de intervención, materiales y secuencia de ejecución.',
+  },
+  {
+    n: '3',
+    title: 'Ejecución',
+    text: 'Mejoramiento del suelo y estabilización mediante inyección controlada con equipamiento especializado.',
+  },
+  {
+    n: '4',
+    title: 'Monitoreo y control',
+    text: 'Verificamos el comportamiento de la estructura durante toda la intervención.',
+  },
+  {
+    n: '5',
+    title: 'Informe técnico',
+    text: 'Entregamos documentación con el detalle de los trabajos y los registros técnicos obtenidos.',
+    last: true,
+  },
+];
+---
+
+<section id="metodologia" class="section container methodology">
+  <div class="method-head">
+    <div class="eyebrow">Cómo trabajamos</div>
+    <h2 class="h2">Nuestra metodología de trabajo</h2>
+    <p class="method-intro">
+      Cada proyecto presenta condiciones particulares. Seguimos un proceso que nos permite
+      comprender el origen del problema, diseñar la solución más adecuada y ejecutar la
+      intervención con control permanente.
+    </p>
+  </div>
+
+  <div class="method-track">
+    <div class="method-line" aria-hidden="true"></div>
+    <div class="method-steps" data-reveal="group">
+      {
+        steps.map((s) => (
+          <div class="step">
+            <div class={`step-num${s.last ? ' step-num-last' : ''}`}>{s.n}</div>
+            <h3 class="step-t">{s.title}</h3>
+            <p class="step-p">{s.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .methodology {
+    padding-block: var(--section-pad-y);
+  }
+  .method-head {
+    max-width: 60ch;
+  }
+  .method-intro {
+    margin-top: 18px;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: #3a4150;
+  }
+  .method-track {
+    margin-top: clamp(40px, 5vw, 60px);
+    position: relative;
+  }
+  .method-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 27px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--navy), var(--gray-l));
+    opacity: 0.3;
+  }
+  .method-steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(12px, 1.5vw, 24px);
+  }
+  .step-num {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .step-num-last {
+    background: #fff;
+    border: 2px solid var(--navy);
+    color: var(--navy);
+  }
+  .step-t {
+    margin-top: 18px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .step-p {
+    margin-top: 9px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #5a616e;
+  }
+
+  @media (max-width: 900px) {
+    .method-steps {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 24px;
+    }
+    .method-line {
+      display: none;
+    }
+  }
+  @media (max-width: 480px) {
+    .method-steps {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      column-gap: 16px;
+      align-items: center;
+    }
+    .step-num {
+      grid-row: span 2;
+    }
+    .step-t {
+      margin-top: 0;
+    }
+  }
+</style>

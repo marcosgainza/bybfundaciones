@@ -1,0 +1,205 @@
+---
+import ImageSlot from './ImageSlot.astro';
+
+const cases = [
+  {
+    n: 'Caso 01',
+    place: 'Paraná, Entre Ríos · Vivienda unifamiliar',
+    title: 'Refuerzo de fundaciones en vivienda unifamiliar',
+    rows: [
+      ['Situación inicial.', 'Fisuras en distintos muros, desniveles en sectores del piso y asentamientos diferenciales que comprometían la estabilidad.'],
+      ['Intervención.', 'Plan de refuerzo mediante inyecciones controladas para consolidar el suelo de apoyo y mejorar la estabilidad de las fundaciones.'],
+      ['Resultado.', 'Estructura estabilizada y detención de los asentamientos, permitiendo la posterior reparación de las fisuras.'],
+    ],
+    img: 'bb-caso1',
+  },
+  {
+    n: 'Caso 02',
+    place: 'Paraná, Entre Ríos · Oquedad bajo contrapiso',
+    title: 'Corrección de oquedades bajo contrapiso',
+    rows: [
+      ['Situación inicial.', 'Cavidad bajo el contrapiso que provocaba hundimientos y pérdida de apoyo en distintos sectores.'],
+      ['Intervención.', 'Inyecciones controladas de mortero para rellenar la cavidad y restituir el contacto entre el suelo y la estructura.'],
+      ['Resultado.', 'Apoyo del contrapiso recuperado y riesgo de nuevos hundimientos reducido.'],
+    ],
+    img: 'bb-caso2',
+  },
+  {
+    n: 'Caso 03',
+    place: 'Entre Ríos · Mejoramiento de suelo',
+    title: 'Mejoramiento del suelo para estabilización',
+    rows: [
+      ['Situación inicial.', 'Movimientos diferenciales originados por las condiciones del terreno de fundación.'],
+      ['Intervención.', 'Programa de mejoramiento del suelo mediante inyecciones controladas, diseñado para las características geotécnicas del sitio.'],
+      ['Resultado.', 'Mejora en las condiciones de apoyo del terreno y estabilización de la estructura.'],
+    ],
+    img: 'bb-caso3',
+  },
+];
+---
+
+<section id="casos" class="section container cases">
+  <div class="cases-head">
+    <div class="eyebrow">Obras realizadas</div>
+    <h2 class="h2">Problemas resueltos, no solo fotos.</h2>
+    <p class="cases-intro">
+      Cada obra presenta desafíos particulares. Analizamos el problema, comprendemos su
+      origen y desarrollamos la intervención más adecuada para recuperar la estabilidad de
+      la estructura.
+    </p>
+  </div>
+
+  <div class="cases-list" data-reveal="group">
+    {
+      cases.map((c, i) => (
+        <article class={`case${i % 2 === 1 ? ' case-alt' : ''}`}>
+          <div class="case-media">
+            <ImageSlot
+              alt={`Obra: ${c.title}`}
+              placeholder={`Foto del ${c.n.toLowerCase()}`}
+              height="clamp(220px,22vw,280px)"
+            />
+          </div>
+          <div class="case-body">
+            <div class="case-meta">
+              <span class="case-tag">{c.n}</span>
+              <span class="case-place">{c.place}</span>
+            </div>
+            <h3 class="case-t">{c.title}</h3>
+            <div class="case-rows">
+              {c.rows.map(([k, v]) => (
+                <p class="case-row">
+                  <strong>{k}</strong> {v}
+                </p>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="cases-note">
+    Casos de referencia. Se ajustarán con nombres, fechas y fotos reales de cada obra.
+  </p>
+</section>
+
+<style>
+  .cases {
+    padding-block: var(--section-pad-y);
+  }
+  .cases-head {
+    max-width: 62ch;
+  }
+  .cases-intro {
+    margin-top: 18px;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: #3a4150;
+  }
+  .cases-list {
+    margin-top: clamp(36px, 4vw, 52px);
+    display: grid;
+    gap: 18px;
+  }
+  .case {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: clamp(20px, 3vw, 40px);
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .case-media {
+    align-self: stretch;
+    display: flex;
+  }
+  .case-media :global(.img-slot),
+  .case-media :global(.slot-img) {
+    height: 100% !important;
+    min-height: clamp(220px, 22vw, 280px);
+  }
+  .case-body {
+    padding: clamp(22px, 2vw, 34px) clamp(22px, 2vw, 40px) clamp(22px, 2vw, 34px) 0;
+  }
+  /* Caso alternado: texto a la izquierda, imagen a la derecha */
+  .case-alt {
+    grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+  }
+  .case-alt .case-media {
+    order: 2;
+  }
+  .case-alt .case-body {
+    order: 1;
+    padding: clamp(22px, 2vw, 34px) 0 clamp(22px, 2vw, 34px) clamp(22px, 2vw, 40px);
+  }
+  .case-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .case-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--navy);
+    padding: 5px 11px;
+    border-radius: 100px;
+  }
+  .case-place {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--gray);
+  }
+  .case-t {
+    margin-top: 14px;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .case-rows {
+    margin-top: 14px;
+    display: grid;
+    gap: 9px;
+  }
+  .case-row {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: #4a515e;
+  }
+  .case-row strong {
+    color: var(--navy);
+  }
+  .cases-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  @media (max-width: 780px) {
+    .case,
+    .case-alt {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .case-media,
+    .case-alt .case-media {
+      order: -1;
+    }
+    .case-body,
+    .case-alt .case-body {
+      order: 0;
+      padding: clamp(20px, 5vw, 28px);
+    }
+    .case-media :global(.img-slot),
+    .case-media :global(.slot-img) {
+      min-height: 200px;
+    }
+  }
+</style>

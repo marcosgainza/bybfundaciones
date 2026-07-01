@@ -1,0 +1,112 @@
+---
+import { site } from '../data/site';
+
+const reasons = [
+  { t: 'Experiencia geotécnica', d: 'Años de trabajo en estudios de suelos, fundaciones y obras de ingeniería.' },
+  { t: 'Soluciones a medida', d: 'No usamos procedimientos estándar. Cada intervención se diseña según el caso.' },
+  { t: 'Equipamiento especializado', d: 'Equipos específicos para inyecciones controladas y mejoramiento de suelos.' },
+  { t: 'Monitoreo en ejecución', d: 'Controlamos el comportamiento de la estructura durante los trabajos.' },
+  { t: 'Mínima afectación', d: 'Metodologías que alteran lo menos posible la construcción existente.' },
+  { t: 'Respaldo técnico', d: 'Cada obra sigue criterios de ingeniería y procedimientos fundamentados.' },
+];
+---
+
+<section id="porque" class="section why">
+  <div class="container why-inner">
+    <div class="why-copy">
+      <div class="eyebrow eyebrow-light">Por qué elegirnos</div>
+      <h2 class="why-title">¿Por qué elegir {site.name}?</h2>
+      <p class="why-lead">
+        Cada intervención comienza con una pregunta: ¿cuál es la causa del problema?
+        Entendemos que una reparación efectiva empieza por comprender el origen de la falla.
+        Por eso analizamos cada caso de forma particular antes de definir la metodología.
+      </p>
+      <p class="why-sub">
+        Nuestro trabajo combina experiencia en ingeniería, conocimiento geotécnico y
+        ejecución especializada para brindar soluciones adaptadas a cada proyecto.
+      </p>
+    </div>
+
+    <div class="why-grid" data-reveal="group">
+      {
+        reasons.map((r) => (
+          <div class="why-cell">
+            <h3 class="why-cell-t">{r.t}</h3>
+            <p class="why-cell-d">{r.d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .why {
+    background: var(--navy);
+    color: #fff;
+  }
+  .why-inner {
+    padding-block: var(--section-pad-y);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: start;
+  }
+  .eyebrow-light {
+    color: #9db2d6;
+  }
+  .why-title {
+    margin-top: 14px;
+    font-weight: 800;
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+  .why-lead {
+    margin-top: 20px;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: #c7d2e6;
+  }
+  .why-sub {
+    margin-top: 16px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #9db2d6;
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .why-cell {
+    background: var(--navy);
+    padding: 24px;
+  }
+  .why-cell-t {
+    font-size: 15.5px;
+    font-weight: 700;
+  }
+  .why-cell-d {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #9db2d6;
+  }
+
+  @media (max-width: 900px) {
+    .why-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  @media (max-width: 440px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

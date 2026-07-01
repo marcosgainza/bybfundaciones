@@ -1,0 +1,94 @@
+---
+const pillars = [
+  {
+    title: 'Seguridad',
+    sub: 'Compromiso y confianza',
+    icon: '<path d="M12 3l7 3v5c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V6z"></path>',
+  },
+  {
+    title: 'Precisión',
+    sub: 'Ingeniería de calidad',
+    icon: '<circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 1v3M12 20v3M1 12h3M20 12h3"></path>',
+  },
+  {
+    title: 'Solidez',
+    sub: 'Fundaciones que perduran',
+    icon: '<rect x="4" y="3" width="16" height="18" rx="1"></rect><path d="M9 21v-4h6v4M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01"></path>',
+  },
+  {
+    title: 'Soluciones',
+    sub: 'Innovación y eficiencia',
+    icon: '<path d="M8 7V3M8 3L5 6M8 3l3 3M16 17v4M16 21l3-3M16 21l-3-3"></path>',
+  },
+];
+---
+
+<div class="pillars">
+  <div class="container pillars-grid">
+    {
+      pillars.map((p) => (
+        <div class="pillar">
+          <svg
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#fff"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            set:html={p.icon}
+          />
+          <div>
+            <div class="pillar-t">{p.title}</div>
+            <div class="pillar-s">{p.sub}</div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .pillars {
+    background: var(--navy);
+    color: #fff;
+  }
+  .pillars-grid {
+    padding-block: clamp(26px, 3vw, 38px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .pillar {
+    background: var(--navy);
+    padding: 16px clamp(8px, 1.5vw, 22px);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .pillar svg {
+    flex: 0 0 auto;
+  }
+  .pillar-t {
+    font-size: 14.5px;
+    font-weight: 700;
+  }
+  .pillar-s {
+    font-size: 12px;
+    color: #9db2d6;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 760px) {
+    .pillars-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 440px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

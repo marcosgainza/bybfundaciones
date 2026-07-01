@@ -1,0 +1,148 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+import { faqs } from '../data/faq';
+import { withBase } from '../lib/url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Ruta relativa de la página, ej: '/' o '/servicios'. */
+  path?: string;
+}
+
+const {
+  title = `${site.name} · Refuerzo de Fundaciones en ${site.city}, ${site.region}`,
+  description = site.description,
+  path = '/',
+} = Astro.props;
+
+const canonical = new URL(withBase(path), Astro.site).href;
+const ogImage = new URL(withBase('/assets/og-image.jpg'), Astro.site).href;
+
+// ---------- JSON-LD: negocio local (SEO local + GEO) ----------
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${site.url}#business`,
+  name: site.name,
+  description: site.description,
+  url: site.url,
+  image: ogImage,
+  telephone: site.phoneDisplay,
+  email: site.email,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.city,
+    addressRegion: site.region,
+    addressCountry: site.country,
+  },
+  areaServed: site.areaServed.map((a) => ({ '@type': 'Place', name: a })),
+  founder: site.founders.map((f) => ({ '@type': 'Person', name: f })),
+  knowsAbout: [
+    'Refuerzo de fundaciones',
+    'Mejoramiento de suelos',
+    'Inyección controlada',
+    'Ingeniería geotécnica',
+    'Estabilización de estructuras',
+  ],
+  sameAs: Object.values(site.social).filter((u) => u && u !== '#'),
+};
+
+// ---------- JSON-LD: preguntas frecuentes (rich results + GEO) ----------
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content={site.name} />
+    <meta name="theme-color" content="#0d2b5b" />
+    <meta name="geo.region" content="AR-E" />
+    <meta name="geo.placename" content={`${site.city}, ${site.region}`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="apple-touch-icon" href={withBase('/assets/logo/logo-header.png')} />
+
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    />
+
+    <!-- Datos estructurados -->
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Aparición al hacer scroll (progresivo, respeta reduce-motion) -->
+    <script>
+      const groups = Array.from(document.querySelectorAll('[data-reveal]'));
+      const items = (host: Element) =>
+        host.getAttribute('data-reveal') === 'group'
+          ? Array.from(host.children)
+          : [host];
+
+      const io =
+        'IntersectionObserver' in window
+          ? new IntersectionObserver(
+              (entries, obs) => {
+                entries.forEach((e) => {
+                  if (e.isIntersecting) {
+                    items(e.target).forEach((n) => n.classList.add('rv-in'));
+                    obs.unobserve(e.target);
+                  }
+                });
+              },
+              { threshold: 0.1, rootMargin: '0px 0px -7% 0px' }
+            )
+          : null;
+
+      groups.forEach((host) => {
+        items(host).forEach((n, i) => {
+          (n as HTMLElement).classList.add('rv');
+          (n as HTMLElement).style.transitionDelay =
+            (host.getAttribute('data-reveal') === 'group' ? i * 90 : 0) + 'ms';
+        });
+        if (io) io.observe(host);
+        else items(host).forEach((n) => n.classList.add('rv-in'));
+      });
+    </script>
+  </body>
+</html>

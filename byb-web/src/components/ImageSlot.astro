@@ -1,0 +1,44 @@
+---
+// Espacio de imagen. Si `src` tiene una foto real la muestra;
+// si no, muestra un placeholder con instrucción de qué foto va.
+// Para cargar una foto: dejá el archivo en public/assets/images/
+// y pasá src="/assets/images/mi-foto.jpg" (el subpath se agrega solo).
+import { withBase } from '../lib/url';
+
+interface Props {
+  src?: string;
+  alt: string;
+  placeholder: string;
+  height: string; // ej: "clamp(360px,42vw,480px)"
+  loading?: 'lazy' | 'eager';
+}
+const { src, alt, placeholder, height, loading = 'lazy' } = Astro.props;
+const resolved = src ? (src.startsWith('/') ? withBase(src) : src) : undefined;
+---
+
+{
+  resolved ? (
+    <img
+      src={resolved}
+      alt={alt}
+      loading={loading}
+      class="slot-img"
+      style={`height:${height}`}
+    />
+  ) : (
+    <div class="img-slot" style={`height:${height}; position:relative;`}>
+      <span>{placeholder}</span>
+    </div>
+  )
+}
+
+<style>
+  .slot-img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .img-slot {
+    width: 100%;
+    border-radius: inherit;
+  }
+</style>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://marcosgainza.github.io/bybfundaciones/sitemap-index.xml

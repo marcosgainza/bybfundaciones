@@ -1,0 +1,179 @@
+---
+import { site } from '../data/site';
+import { withBase } from '../lib/url';
+
+const socials = [
+  { key: 'instagram', label: 'Instagram', href: site.social.instagram, icon: '<rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>' },
+  { key: 'linkedin', label: 'LinkedIn', href: site.social.linkedin, icon: '<path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21h-4z" fill="currentColor"></path>' },
+  { key: 'facebook', label: 'Facebook', href: site.social.facebook, icon: '<path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2c0-.55.45-1 1-1z" fill="currentColor"></path>' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="ftr">
+  <div class="container ftr-inner">
+    <div class="ftr-brand">
+      <div class="ftr-lockup">
+        <img src={withBase('/assets/logo/logo-footer.png')} alt={site.name} width="82" height="58" class="ftr-logo" />
+        <span class="ftr-brand-text">
+          <span class="bl-row">
+            <span class="bl-line"></span>
+            <span class="bl-title">Ingeniería</span>
+            <span class="bl-line"></span>
+          </span>
+          <span class="bl-row bl-row-mid">
+            <span class="bl-line bl-line-thin"></span>
+            <span class="bl-dot"></span>
+            <span class="bl-line bl-line-thin"></span>
+          </span>
+          <span class="bl-row">
+            <span class="bl-sub-dot"></span>
+            <span class="bl-sub">Refuerzo de Fundaciones</span>
+            <span class="bl-sub-dot"></span>
+          </span>
+        </span>
+      </div>
+      <p class="ftr-tag">{site.tagline}</p>
+      <div class="ftr-social">
+        {
+          socials.map((s) => (
+            <a href={s.href} aria-label={s.label} target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="ftr-col">
+      <div class="ftr-col-t">Contacto</div>
+      <div class="ftr-links">
+        <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp: {site.phoneDisplay}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <span>{site.city}, {site.region}</span>
+      </div>
+    </div>
+
+    <div class="ftr-col">
+      <div class="ftr-col-t">Secciones</div>
+      <div class="ftr-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#casos">Casos</a>
+        <a href="#nosotros">Quiénes somos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ftr-bottom">
+    <div class="container ftr-copy">© {year} {site.name} · {site.city}, {site.region}</div>
+  </div>
+</footer>
+
+<style>
+  .ftr {
+    background: var(--navy-dark);
+    color: #fff;
+  }
+  .ftr-inner {
+    padding-block: clamp(40px, 4vw, 56px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
+  }
+  .ftr-lockup {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .ftr-logo {
+    height: 58px;
+    width: auto;
+    flex: 0 0 auto;
+  }
+  .ftr-brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+  }
+  .ftr-brand-text .bl-row { display: flex; align-items: center; gap: 10px; }
+  .ftr-brand-text .bl-row-mid { gap: 8px; width: 100%; }
+  .ftr-brand-text .bl-line { width: 20px; height: 1.5px; background: #fff; }
+  .ftr-brand-text .bl-line-thin { flex: 1; background: #6e84ae; }
+  .ftr-brand-text .bl-title { font-weight: 700; font-size: 17px; letter-spacing: 0.3em; text-transform: uppercase; color: #fff; padding-left: 0.3em; }
+  .ftr-brand-text .bl-dot { width: 4px; height: 4px; border-radius: 50%; background: #9db2d6; flex: 0 0 auto; }
+  .ftr-brand-text .bl-sub-dot { width: 3.5px; height: 3.5px; border-radius: 50%; background: #9db2d6; }
+  .ftr-brand-text .bl-sub { font-size: 8px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: #9db2d6; padding-left: 0.24em; }
+
+  .ftr-tag {
+    margin-top: 18px;
+    max-width: 38ch;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #9db2d6;
+  }
+  .ftr-social {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ftr-social a {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c7d2e6;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .ftr-social a:hover {
+    background: #fff;
+    color: var(--navy-dark);
+    border-color: #fff;
+  }
+  .ftr-col-t {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #6e84ae;
+    margin-bottom: 14px;
+  }
+  .ftr-links {
+    display: grid;
+    gap: 9px;
+    font-size: 14px;
+    color: #c7d2e6;
+  }
+  .ftr-links a:hover {
+    color: #fff;
+  }
+  .ftr-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .ftr-copy {
+    padding-block: 18px;
+    font-size: 12.5px;
+    color: #6e84ae;
+  }
+
+  @media (max-width: 760px) {
+    .ftr-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .ftr-brand {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 460px) {
+    .ftr-inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

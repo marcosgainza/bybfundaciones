@@ -1,0 +1,141 @@
+---
+const problems = [
+  {
+    title: 'Grietas que crecen',
+    text: 'Grietas en paredes o pisos que aparecen o continúan creciendo.',
+    icon: '<path d="M4 3h16v18H4zM12 3v6l-3 2 3 2-2 6"></path>',
+  },
+  {
+    title: 'Aberturas que no cierran',
+    text: 'Puertas o ventanas que dejaron de cerrar correctamente.',
+    icon: '<rect x="5" y="3" width="14" height="18" rx="1"></rect><path d="M14 3v18M9 12h.01"></path>',
+  },
+  {
+    title: 'Pisos con desnivel',
+    text: 'Pisos con desniveles o sectores hundidos.',
+    icon: '<path d="M3 8h18M3 13l5-2 4 2 4-2 5 2M3 18h18"></path>',
+  },
+  {
+    title: 'Separaciones',
+    text: 'Separación entre paredes, pisos o techos.',
+    icon: '<path d="M4 4h7v16H4zM13 4h7v16h-7"></path>',
+  },
+  {
+    title: 'Hundimientos',
+    text: 'Hundimientos alrededor de la vivienda o de la estructura.',
+    icon: '<path d="M3 6h18M5 6v8c0 2 3 4 7 4s7-2 7-4V6"></path>',
+  },
+  {
+    title: 'Asentamientos',
+    text: 'Asentamientos que comprometen la estabilidad de la construcción.',
+    icon: '<path d="M3 5h18v6H3zM6 11v5M12 11v7M18 11v4M3 20h18"></path>',
+  },
+];
+---
+
+<section id="problemas" class="section container problems">
+  <div class="problems-head">
+    <div>
+      <div class="eyebrow">El problema</div>
+      <h2 class="h2">¿Tu propiedad presenta alguno de estos problemas?</h2>
+    </div>
+    <p class="problems-intro">
+      Estos síntomas pueden ser consecuencia de problemas en el suelo de fundación.
+      <span class="mk">Una evaluación técnica realizada a tiempo</span> permite identificar
+      el origen del problema y definir la intervención más adecuada, evitando que los daños
+      continúen evolucionando.
+    </p>
+  </div>
+
+  <div class="cards" data-reveal="group">
+    {
+      problems.map((p) => (
+        <div class="card">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--navy)"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            set:html={p.icon}
+          />
+          <h3 class="card-t">{p.title}</h3>
+          <p class="card-p">{p.text}</p>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="problems-cta">
+    <a href="#contacto" class="btn btn-primary cta-pulse">Solicitar una evaluación →</a>
+  </div>
+</section>
+
+<style>
+  .problems {
+    padding-top: var(--section-pad-y);
+    padding-bottom: clamp(20px, 3vw, 40px);
+  }
+  .problems-head {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+    margin-bottom: clamp(36px, 4vw, 52px);
+  }
+  .problems-intro {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: #3a4150;
+    padding-top: 6px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 24px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    border-color: var(--navy);
+    box-shadow: 0 8px 24px -16px rgba(13, 43, 91, 0.5);
+  }
+  .card-t {
+    margin-top: 16px;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .card-p {
+    margin-top: 7px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #5a616e;
+  }
+  .problems-cta {
+    margin-top: 34px;
+  }
+
+  @media (max-width: 860px) {
+    .problems-head {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 520px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
