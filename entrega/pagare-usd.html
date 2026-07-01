@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es-AR"><head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pagaré USD 500 — B&B Ingeniería</title><style>
+  :root { --navy:#0d2b5b; --gray:#5a616e; --line:#c9cfd8; --mist:#f4f6f9; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#e9edf2; color:#20262f;
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  .print-bar { max-width:800px; margin:16px auto 0; text-align:right; }
+  .print-bar button { background:var(--navy); color:#fff; border:0; border-radius:6px;
+    padding:10px 18px; font-size:14px; font-weight:700; cursor:pointer; }
+  .sheet { max-width:800px; margin:20px auto; background:#fff; padding:46px 52px;
+    box-shadow:0 10px 40px rgba(13,43,91,.15); }
+  header { display:flex; justify-content:space-between; align-items:flex-start;
+    border-bottom:3px solid var(--navy); padding-bottom:14px; margin-bottom:8px; }
+  .brand { font-size:22px; font-weight:800; color:var(--navy); }
+  .brand small { display:block; font-size:11px; font-weight:600; color:var(--gray);
+    letter-spacing:.14em; text-transform:uppercase; margin-top:3px; }
+  .doc-title { font-size:30px; font-weight:800; color:var(--navy); letter-spacing:.04em;
+    text-align:right; }
+  .toprow { display:flex; justify-content:space-between; gap:18px; margin:22px 0 8px; }
+  .field { font-size:13px; }
+  .field span { display:block; color:var(--gray); font-size:11px; text-transform:uppercase;
+    letter-spacing:.08em; margin-bottom:2px; }
+  .field b { font-size:14px; }
+  .importe-box { border:2px solid var(--navy); border-radius:8px; padding:8px 18px;
+    text-align:center; min-width:150px; }
+  .importe-box span { display:block; font-size:10px; color:var(--gray); text-transform:uppercase;
+    letter-spacing:.1em; }
+  .importe-box b { font-size:24px; color:var(--navy); font-variant-numeric:tabular-nums; }
+  .body-text { font-size:15px; line-height:1.7; margin:22px 0; }
+  .body-text .letras { font-weight:700; text-transform:uppercase; }
+  .ref { background:var(--mist); border-left:4px solid var(--navy); border-radius:0 6px 6px 0;
+    padding:12px 16px; font-size:13px; color:#33404f; margin:18px 0; }
+  .datos { display:grid; grid-template-columns:1fr 1fr; gap:6px 40px; margin:18px 0 4px;
+    font-size:13px; }
+  .datos div { border-bottom:1px dotted var(--line); padding:5px 0; display:flex;
+    justify-content:space-between; }
+  .datos div span { color:var(--gray); }
+  .firma { margin-top:56px; text-align:center; }
+  .firma .line { border-top:1px solid #333; width:280px; margin:0 auto; padding-top:8px;
+    font-size:13px; }
+  .firma .sub { font-size:11px; color:var(--gray); margin-top:2px; }
+  footer { margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
+    font-size:11px; color:var(--gray); text-align:center; }
+  @media print {
+    body { background:#fff; }
+    .print-bar { display:none; }
+    .sheet { box-shadow:none; margin:0; max-width:none; padding:0; }
+  }
+</style></head>
+<body>
+  <div class="print-bar"><button onclick="window.print()">Imprimir / Guardar PDF</button></div>
+  <div class="sheet">
+    <header>
+      <div class="brand">B&B Ingeniería<small>Ingeniería de fundaciones</small></div>
+      <div class="doc-title">PAGARÉ</div>
+    </header>
+    <div class="toprow">
+      <div>
+        <div class="field"><span>Lugar y fecha de libramiento</span><b>Paraná, Entre Ríos — 02/07/2026</b></div>
+        <div class="field" style="margin-top:10px;"><span>Vencimiento</span><b>A la vista</b></div>
+      </div>
+      <div class="importe-box"><span>Importe</span><b>USD 500</b></div>
+    </div>
+
+    <p class="body-text">
+      Por igual valor recibido, me obligo a pagar incondicionalmente a la orden de
+      <b>Marcos Gainza</b> la cantidad de
+      <span class="letras">DÓLARES ESTADOUNIDENSES QUINIENTOS</span> (USD 500),
+      pagaderos en Paraná, Entre Ríos. Sin protesto (art. 50, Dec. Ley 5965/63).
+    </p>
+
+    <div class="ref"><b>Concepto:</b> Saldo por el desarrollo del sitio web (total USD 650, menos anticipo de USD 150).<br />A presentar al cobro a la finalización del sistema de gestión.</div>
+
+    <div class="datos">
+      <div><span>Librador (deudor)</span><b>B&B Ingeniería</b></div>
+      <div><span>DNI / CUIT</span><b>__________</b></div>
+      <div><span>Firmantes</span><b>Bruno Barbagelata y Fausto Barbagelata</b></div>
+      <div><span>Domicilio</span><b>__________</b></div>
+    </div>
+
+    <div class="firma">
+      <div class="line">Firma y aclaración del librador
+        <div class="sub">Bruno Barbagelata y Fausto Barbagelata — B&B Ingeniería</div>
+      </div>
+    </div>
+
+    <footer>Pagaré a favor de Marcos Gainza · Paraná, Entre Ríos, 02/07/2026</footer></div>
+</body></html>
