@@ -26,9 +26,9 @@ import { site } from '../data/site';
         reparar una fundación, sino devolver estabilidad a la estructura.
       </p>
       <div class="about-tags">
-        <span class="tag">Ingeniería civil</span>
-        <span class="tag">Geotecnia</span>
-        <span class="tag">Inyección controlada</span>
+        <span class="tag"><span>Ingeniería civil</span></span>
+        <span class="tag"><span>Geotecnia</span></span>
+        <span class="tag"><span>Inyección controlada</span></span>
       </div>
     </div>
 
@@ -79,8 +79,13 @@ import { site } from '../data/site';
     font-weight: 600;
     color: var(--navy);
     border: 1px solid #cbd0d8;
-    padding: 9px 15px;
-    border-radius: 100px;
+    padding: 9px 18px;
+    border-radius: 3px;
+    transform: skewX(-12deg);
+  }
+  .tag > span {
+    display: inline-block;
+    transform: skewX(12deg);
   }
   .about-frame {
     border-radius: 10px;
