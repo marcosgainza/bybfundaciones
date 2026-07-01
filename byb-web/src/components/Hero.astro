@@ -22,10 +22,6 @@ import { site } from '../data/site';
         hundimientos u oquedades, priorizando el análisis técnico, la seguridad
         estructural y la mínima afectación de la obra existente.
       </p>
-      <div class="hero-actions">
-        <a href="#contacto" class="btn btn-primary cta-pulse">Solicitar evaluación técnica →</a>
-        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
-      </div>
     </div>
 
     <div class="hero-media">
@@ -41,6 +37,11 @@ import { site } from '../data/site';
         <div class="hero-chip-k">Método</div>
         <div class="hero-chip-v">Inyección controlada</div>
       </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-primary cta-pulse">Solicitar evaluación técnica →</a>
+      <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
     </div>
   </div>
 </section>
@@ -65,8 +66,24 @@ import { site } from '../data/site';
     padding-block: clamp(48px, 7vw, 96px);
     display: grid;
     grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
-    gap: clamp(28px, 4vw, 60px);
+    grid-template-areas:
+      'copy media'
+      'actions media';
+    column-gap: clamp(28px, 4vw, 60px);
+    row-gap: 0;
     align-items: center;
+  }
+  .hero-copy {
+    grid-area: copy;
+    align-self: end;
+  }
+  .hero-actions {
+    grid-area: actions;
+    align-self: start;
+  }
+  .hero-media {
+    grid-area: media;
+    align-self: center;
   }
   .badge {
     display: inline-flex;
@@ -156,10 +173,19 @@ import { site } from '../data/site';
   @media (max-width: 860px) {
     .hero-inner {
       grid-template-columns: 1fr;
-      gap: 36px;
+      grid-template-areas:
+        'copy'
+        'media'
+        'actions';
+      row-gap: 36px;
     }
-    .hero-media {
-      order: -1;
+    .hero-copy,
+    .hero-media,
+    .hero-actions {
+      align-self: auto;
+    }
+    .hero-actions {
+      margin-top: 0;
     }
     .hero-chip {
       left: 12px;
