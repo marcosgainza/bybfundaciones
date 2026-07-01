@@ -5,3 +5,6 @@
 *.rar
 *.zip
 B&B Ingeniería - web.html
+
+# Documentos de entrega con datos privados (recibo, pagarés, reporte)
+entrega/
