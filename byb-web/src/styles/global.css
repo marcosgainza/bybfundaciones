@@ -13,6 +13,12 @@
   --mist: #f4f6f8;
   --line: #e6e8ec;
 
+  /* Acento ámbar de seguridad — sólo para CTAs y detalles clave (5-10% de la página) */
+  --accent: #f5a623;
+  --accent-hover: #e8801a;
+  --accent-soft: rgba(245, 166, 35, 0.14);
+  --accent-ink: #241a05; /* texto sobre ámbar (contraste legible) */
+
   --container: 1280px;
   --header-h: 112px;
 
@@ -107,6 +113,15 @@ img {
   background: var(--navy-dark);
 }
 
+.btn-accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+}
+.btn-accent:hover {
+  background: var(--accent-hover);
+}
+
 .btn-ghost {
   border: 1.5px solid #cbd0d8;
   color: var(--navy);
@@ -127,9 +142,9 @@ img {
 
 /* ---------- Animación latido del CTA ---------- */
 @keyframes bbCtaPulse {
-  0% { box-shadow: 0 0 0 0 rgba(13, 43, 91, 0.45); }
-  70% { box-shadow: 0 0 0 14px rgba(13, 43, 91, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(13, 43, 91, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.5); }
+  70% { box-shadow: 0 0 0 14px rgba(245, 166, 35, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0); }
 }
 .cta-pulse {
   animation: bbCtaPulse 2.6s ease-out infinite;
