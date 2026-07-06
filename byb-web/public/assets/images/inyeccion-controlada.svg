@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" role="img" aria-label="Esquema de inyección controlada: refuerzo del suelo de apoyo bajo la fundación mediante inyección de resina">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f8fb"/>
+      <stop offset="1" stop-color="#e7ecf3"/>
+    </linearGradient>
+    <linearGradient id="soil1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3e0d8"/>
+      <stop offset="1" stop-color="#d3cfc4"/>
+    </linearGradient>
+    <linearGradient id="soil2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9c3b4"/>
+      <stop offset="1" stop-color="#b8b19f"/>
+    </linearGradient>
+    <linearGradient id="soil3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a89f89"/>
+      <stop offset="1" stop-color="#948b74"/>
+    </linearGradient>
+    <radialGradient id="resin" cx="0.5" cy="0.42" r="0.62">
+      <stop offset="0" stop-color="#fbc65a"/>
+      <stop offset="0.55" stop-color="#f5a623"/>
+      <stop offset="1" stop-color="#e8801a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bldg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123362"/>
+      <stop offset="1" stop-color="#0d2b5b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Cielo / fondo -->
+  <rect width="760" height="560" fill="url(#sky)"/>
+
+  <!-- Estratos de suelo -->
+  <rect y="248" width="760" height="86"  fill="url(#soil1)"/>
+  <rect y="334" width="760" height="96"  fill="url(#soil2)"/>
+  <rect y="430" width="760" height="130" fill="url(#soil3)"/>
+
+  <!-- Línea de terreno -->
+  <line x1="0" y1="248" x2="760" y2="248" stroke="#0d2b5b" stroke-opacity="0.28" stroke-width="2"/>
+  <!-- textura de estratos (líneas discontinuas) -->
+  <g stroke="#0d2b5b" stroke-opacity="0.10" stroke-width="1.5" stroke-dasharray="7 9">
+    <line x1="0" y1="291" x2="760" y2="291"/>
+    <line x1="0" y1="382" x2="760" y2="382"/>
+    <line x1="0" y1="482" x2="760" y2="482"/>
+  </g>
+
+  <!-- ===== Edificio con fundación ===== -->
+  <!-- Platea / fundación -->
+  <rect x="238" y="232" width="284" height="20" rx="2" fill="#0a2147"/>
+  <!-- Cuerpo del edificio -->
+  <rect x="262" y="96" width="236" height="138" rx="3" fill="url(#bldg)"/>
+  <!-- Techo -->
+  <path d="M250 96 L380 52 L510 96 Z" fill="#0a2147"/>
+  <!-- Ventanas -->
+  <g fill="#dbe3f0" opacity="0.85">
+    <rect x="286" y="120" width="30" height="30" rx="2"/>
+    <rect x="336" y="120" width="30" height="30" rx="2"/>
+    <rect x="394" y="120" width="30" height="30" rx="2"/>
+    <rect x="444" y="120" width="30" height="30" rx="2"/>
+    <rect x="286" y="166" width="30" height="30" rx="2"/>
+    <rect x="336" y="166" width="30" height="30" rx="2"/>
+  </g>
+  <!-- Puerta -->
+  <rect x="396" y="180" width="34" height="54" rx="2" fill="#dbe3f0" opacity="0.85"/>
+  <!-- Grieta por asentamiento -->
+  <path d="M472 96 L468 138 L478 164 L470 200 L476 234" fill="none" stroke="#e8801a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ===== Bulbos de resina inyectada ===== -->
+  <ellipse cx="316" cy="360" rx="86" ry="60" fill="url(#resin)"/>
+  <ellipse cx="452" cy="392" rx="96" ry="66" fill="url(#resin)"/>
+  <!-- Núcleos de resina -->
+  <path d="M316 330 q34 6 40 34 q-8 30 -40 34 q-34 -6 -40 -34 q8 -30 40 -34 Z" fill="#f5a623" opacity="0.9"/>
+  <path d="M452 362 q38 6 44 36 q-8 32 -44 36 q-38 -6 -44 -36 q8 -30 44 -36 Z" fill="#f5a623" opacity="0.9"/>
+
+  <!-- ===== Lanzas de inyección ===== -->
+  <g stroke="#243244" stroke-width="7" stroke-linecap="round">
+    <line x1="316" y1="150" x2="316" y2="356"/>
+    <line x1="452" y1="150" x2="452" y2="388"/>
+  </g>
+  <g stroke="#f5a623" stroke-width="2.6" stroke-linecap="round">
+    <line x1="316" y1="156" x2="316" y2="352"/>
+    <line x1="452" y1="156" x2="452" y2="384"/>
+  </g>
+  <!-- Cabezales de bombeo -->
+  <g fill="#0d2b5b">
+    <rect x="300" y="132" width="32" height="22" rx="3"/>
+    <rect x="436" y="132" width="32" height="22" rx="3"/>
+  </g>
+  <g fill="#f5a623">
+    <circle cx="316" cy="143" r="4.5"/>
+    <circle cx="452" cy="143" r="4.5"/>
+  </g>
+
+  <!-- ===== Rótulos técnicos ===== -->
+  <g font-family="Montserrat, system-ui, sans-serif" font-weight="700">
+    <!-- Fundación -->
+    <line x1="540" y1="242" x2="600" y2="242" stroke="#0d2b5b" stroke-opacity="0.5" stroke-width="1.4"/>
+    <circle cx="540" cy="242" r="3" fill="#0d2b5b"/>
+    <text x="606" y="238" font-size="15" fill="#0d2b5b">Fundación</text>
+    <text x="606" y="256" font-size="11" font-weight="600" fill="#5a616e">existente</text>
+
+    <!-- Resina -->
+    <line x1="548" y1="392" x2="600" y2="392" stroke="#e8801a" stroke-width="1.6"/>
+    <circle cx="548" cy="392" r="3" fill="#e8801a"/>
+    <text x="606" y="388" font-size="15" fill="#0d2b5b">Resina expansiva</text>
+    <text x="606" y="406" font-size="11" font-weight="600" fill="#5a616e">consolida el suelo de apoyo</text>
+
+    <!-- Estratos -->
+    <text x="24" y="472" font-size="11" font-weight="700" letter-spacing="0.12em" fill="#0d2b5b" opacity="0.55">SUELO DE APOYO</text>
+  </g>
+
+  <!-- Flechas de expansión -->
+  <g stroke="#e8801a" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.75">
+    <path d="M316 360 l-40 -10 M270 348 l6 2 -2 -6"/>
+    <path d="M316 360 l40 -10 M362 348 l-6 2 2 -6"/>
+    <path d="M452 392 l-46 -6 M400 384 l7 2 -3 -6"/>
+    <path d="M452 392 l46 -6 M504 384 l-7 2 3 -6"/>
+  </g>
+</svg>

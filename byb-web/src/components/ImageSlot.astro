@@ -11,8 +11,9 @@ interface Props {
   placeholder: string;
   height: string; // ej: "clamp(360px,42vw,480px)"
   loading?: 'lazy' | 'eager';
+  fit?: 'cover' | 'contain'; // 'contain' para esquemas/diagramas que no deben recortarse
 }
-const { src, alt, placeholder, height, loading = 'lazy' } = Astro.props;
+const { src, alt, placeholder, height, loading = 'lazy', fit = 'cover' } = Astro.props;
 const resolved = src ? (src.startsWith('/') ? withBase(src) : src) : undefined;
 ---
 
@@ -23,7 +24,7 @@ const resolved = src ? (src.startsWith('/') ? withBase(src) : src) : undefined;
       alt={alt}
       loading={loading}
       class="slot-img"
-      style={`height:${height}`}
+      style={`height:${height}; object-fit:${fit}`}
     />
   ) : (
     <div class="img-slot" style={`height:${height}; position:relative;`}>
@@ -36,6 +37,7 @@ const resolved = src ? (src.startsWith('/') ? withBase(src) : src) : undefined;
   .slot-img {
     width: 100%;
     object-fit: cover;
+    background: linear-gradient(160deg, #f6f8fb 0%, #e7ecf3 100%);
   }
   .img-slot {
     width: 100%;
