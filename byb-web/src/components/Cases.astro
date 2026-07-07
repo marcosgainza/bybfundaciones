@@ -55,9 +55,11 @@ const cases = [
         <article class={`case${i % 2 === 1 ? ' case-alt' : ''}`}>
           <div class="case-media">
             <ImageSlot
-              alt={`Obra: ${c.title}`}
+              src={`/assets/images/${c.img}.svg`}
+              alt={`Esquema: ${c.title}`}
               placeholder={`Foto del ${c.n.toLowerCase()}`}
               height="clamp(220px,22vw,280px)"
+              fit="contain"
             />
           </div>
           <div class="case-body">

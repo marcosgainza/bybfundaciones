@@ -2,7 +2,15 @@ FOTOS DE LA WEB
 ================
 
 Dejá las fotos reales en esta carpeta y después indicá su nombre en el componente
-correspondiente (propiedad `src`). Mientras no haya foto, se muestra un placeholder.
+correspondiente (propiedad `src`). Mientras no haya foto, se muestra un diagrama
+SVG de cemento (stand-in) o un placeholder.
+
+>> Guía completa de qué fotos sacar/pedir: ver GUIA-FOTOS.md en esta misma carpeta.
+
+Stand-ins que YA existen (esquemas de inyección de cemento, no fotos):
+  - inyeccion-controlada.svg  → HERO
+  - bb-caso1.svg / bb-caso2.svg / bb-caso3.svg  → los 3 CASOS
+Cuando llegue la foto real, poné su .jpg y cambiá el src; el SVG queda de respaldo.
 
 Fotos que faltan y dónde se usan:
 
