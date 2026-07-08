@@ -2,14 +2,12 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // Configuración de publicación.
-// HOY: GitHub Pages -> el sitio vive en https://marcosgainza.github.io/bybfundaciones/
-//   site = origen del dominio, base = subcarpeta del repo.
-// CUANDO HAYA DOMINIO PROPIO (ej. bybingenieria.com.ar):
-//   site: 'https://www.bybingenieria.com.ar', base: '/'
-//   y actualizar también `url`/`base` en src/data/site.ts y public/robots.txt.
+// Hosting: Hostinger, dominio propio en la raíz (apex).
+//   site = dominio propio, base = '/' (sirve desde la raíz, sin subcarpeta).
+// (Histórico) GitHub Pages usaba site: 'https://marcosgainza.github.io', base: '/bybfundaciones'.
 export default defineConfig({
-  site: 'https://marcosgainza.github.io',
-  base: '/bybfundaciones',
+  site: 'https://bybfundaciones.com.ar',
+  base: '/',
   trailingSlash: 'ignore',
   integrations: [sitemap()],
   build: {
