@@ -11,13 +11,13 @@ export const site = {
   tagline: 'Ingeniería aplicada a la estabilización de fundaciones.',
   description:
     'Soluciones de ingeniería para el mejoramiento de suelos y la estabilización de fundaciones mediante inyección controlada en Paraná, Entre Ríos y Santa Fe.',
-  // URL pública actual (GitHub Pages). Cambiar por el dominio propio cuando exista.
-  url: 'https://marcosgainza.github.io/bybfundaciones',
+  // URL pública (dominio propio en Hostinger).
+  url: 'https://bybfundaciones.com.ar',
   locale: 'es-AR',
 
   // --- Contacto (reemplazar por los datos reales) ---
-  phoneDisplay: '+54 9 343 ___ ____',
-  whatsapp: '5493491234567', // solo números, formato internacional sin +
+  phoneDisplay: '+54 9 343 454-7846',
+  whatsapp: '5493434547846', // solo números, formato internacional sin +
   email: 'info@bybingenieria.com.ar',
 
   // --- Ubicación / zona de trabajo (clave para SEO local y GEO) ---
