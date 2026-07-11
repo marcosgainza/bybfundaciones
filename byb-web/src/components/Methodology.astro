@@ -79,8 +79,8 @@ const steps = [
     right: 0;
     top: 27px;
     height: 2px;
-    background: linear-gradient(90deg, var(--navy), var(--gray-l));
-    opacity: 0.3;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--accent) 60%, rgba(245, 166, 35, 0.2) 100%);
+    opacity: 0.55;
   }
   .method-steps {
     position: relative;
@@ -101,9 +101,9 @@ const steps = [
     font-weight: 800;
   }
   .step-num-last {
-    background: #fff;
-    border: 2px solid var(--navy);
-    color: var(--navy);
+    background: var(--accent);
+    border: none;
+    color: var(--accent-ink);
   }
   .step-t {
     margin-top: 18px;

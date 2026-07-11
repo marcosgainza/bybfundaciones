@@ -10,14 +10,20 @@
   --gray: #707274;
   --gray-l: #dbd9db;
   --ink: #1a1f2b;
-  --mist: #f4f6f8;
-  --line: #e6e8ec;
+
+  /* Neutros cálidos (marfil) — reemplazan el blanco/celeste frío.
+     Se alternan por sección para dar ritmo sin perder sobriedad. */
+  --paper: #fcfaf6;   /* blanco cálido: base del sitio */
+  --mist: #f4efe4;    /* marfil: secciones alternadas (Servicios, FAQ) */
+  --sand: #efe8d9;    /* marfil un tono más cálido, para detalles/bordes */
+  --line: #e8e2d6;    /* líneas y bordes en tono cálido */
 
   /* Acento ámbar de seguridad — sólo para CTAs y detalles clave (5-10% de la página) */
   --accent: #f5a623;
   --accent-hover: #e8801a;
   --accent-soft: rgba(245, 166, 35, 0.14);
   --accent-ink: #241a05; /* texto sobre ámbar (contraste legible) */
+  --accent-strong: #b5680a; /* ámbar legible como texto sobre fondo claro */
 
   --container: 1280px;
   --header-h: 112px;
@@ -39,7 +45,7 @@ html {
 }
 
 body {
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
   font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -79,7 +85,7 @@ img {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--accent-strong);
 }
 
 .h2 {
@@ -132,9 +138,9 @@ img {
   background: #fff;
 }
 
-/* Resaltador de frases que venden */
+/* Resaltador de frases que venden — banda ámbar de seguridad */
 .mk {
-  background: linear-gradient(180deg, transparent 62%, rgba(13, 43, 91, 0.16) 62%);
+  background: linear-gradient(180deg, transparent 60%, rgba(245, 166, 35, 0.32) 60%);
   padding: 0 2px;
   font-weight: 700;
   color: var(--navy);
@@ -173,11 +179,11 @@ img {
   text-align: center;
   padding: 20px;
   background:
-    linear-gradient(135deg, #eef1f5 0%, #e3e8ef 100%);
-  color: #8a93a3;
+    linear-gradient(135deg, #f2ede2 0%, #e7ddca 100%);
+  color: #9a8f76;
   font-size: 13px;
   font-weight: 600;
-  border: 1px dashed #c3cbd6;
+  border: 1px dashed #cfc5b0;
 }
 .img-slot::before {
   content: '';

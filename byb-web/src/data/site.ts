@@ -17,7 +17,9 @@ export const site = {
 
   // --- Contacto (reemplazar por los datos reales) ---
   phoneDisplay: '+54 9 343 454-7846',
-  whatsapp: '5493434547846', // solo números, formato internacional sin +
+  // Para los links wa.me de Argentina conviene el número SIN el "9" (549 → 54).
+  // Con el 9 el chat no abría; sin el 9 funciona. El display de arriba sí lleva el 9.
+  whatsapp: '543434547846', // solo números, formato internacional sin + y sin el 9
   email: 'info@bybingenieria.com.ar',
 
   // --- Ubicación / zona de trabajo (clave para SEO local y GEO) ---

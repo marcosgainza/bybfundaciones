@@ -91,6 +91,9 @@ const year = new Date().getFullYear();
     height: 58px;
     width: auto;
     flex: 0 0 auto;
+    /* El archivo del logo es celeste pálido y se perdía sobre el azul del footer.
+       Lo forzamos a blanco nítido para que resalte. */
+    filter: brightness(0) invert(1);
   }
   .ftr-brand-text {
     display: flex;
