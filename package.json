@@ -1,0 +1,17 @@
+{
+  "name": "byb-ingenieria-web",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Sitio web de B&B Ingeniería — refuerzo de fundaciones y mejoramiento de suelos (Paraná, Entre Ríos).",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.2.0",
+    "@astrojs/sitemap": "^3.2.1"
+  }
+}

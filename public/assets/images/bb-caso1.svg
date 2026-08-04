@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" role="img" aria-label="Caso 1: refuerzo de fundaciones en vivienda mediante inyección controlada para consolidar el suelo de apoyo">
+  <defs>
+    <linearGradient id="c1-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f8fb"/><stop offset="1" stop-color="#e7ecf3"/>
+    </linearGradient>
+    <linearGradient id="c1-soil1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3e0d8"/><stop offset="1" stop-color="#d3cfc4"/>
+    </linearGradient>
+    <linearGradient id="c1-soil2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9c3b4"/><stop offset="1" stop-color="#b3ac99"/>
+    </linearGradient>
+    <radialGradient id="c1-cem" cx="0.5" cy="0.4" r="0.62">
+      <stop offset="0" stop-color="#d7dbe1"/><stop offset="0.55" stop-color="#aab0ba"/><stop offset="1" stop-color="#8a909c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="c1-bldg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123362"/><stop offset="1" stop-color="#0d2b5b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="460" fill="url(#c1-sky)"/>
+  <!-- estratos -->
+  <rect y="250" width="720" height="80" fill="url(#c1-soil1)"/>
+  <rect y="330" width="720" height="130" fill="url(#c1-soil2)"/>
+  <line x1="0" y1="250" x2="720" y2="250" stroke="#0d2b5b" stroke-opacity="0.28" stroke-width="2"/>
+  <g stroke="#0d2b5b" stroke-opacity="0.10" stroke-width="1.5" stroke-dasharray="7 9">
+    <line x1="0" y1="330" x2="720" y2="330"/>
+    <line x1="0" y1="400" x2="720" y2="400"/>
+  </g>
+
+  <!-- vivienda -->
+  <rect x="250" y="236" width="260" height="18" rx="2" fill="#0a2147"/>
+  <rect x="276" y="120" width="208" height="118" rx="3" fill="url(#c1-bldg)"/>
+  <path d="M262 120 L380 82 L498 120 Z" fill="#0a2147"/>
+  <g fill="#dbe3f0" opacity="0.85">
+    <rect x="298" y="142" width="28" height="28" rx="2"/>
+    <rect x="344" y="142" width="28" height="28" rx="2"/>
+    <rect x="434" y="142" width="28" height="28" rx="2"/>
+    <rect x="298" y="184" width="28" height="28" rx="2"/>
+  </g>
+  <rect x="392" y="184" width="30" height="52" rx="2" fill="#dbe3f0" opacity="0.85"/>
+  <!-- fisuras -->
+  <path d="M462 120 L458 158 L468 184 L460 214 L466 236" fill="none" stroke="#e8801a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M330 214 L336 236" fill="none" stroke="#e8801a" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- bulbos de cemento -->
+  <ellipse cx="330" cy="360" rx="76" ry="52" fill="url(#c1-cem)"/>
+  <ellipse cx="452" cy="378" rx="82" ry="56" fill="url(#c1-cem)"/>
+  <path d="M330 334 q30 5 36 30 q-7 27 -36 30 q-30 -5 -36 -30 q7 -27 36 -30 Z" fill="#b6bcc6" opacity="0.95"/>
+  <path d="M452 352 q33 5 39 32 q-7 28 -39 32 q-33 -5 -39 -32 q7 -27 39 -32 Z" fill="#b6bcc6" opacity="0.95"/>
+
+  <!-- lanzas -->
+  <g stroke="#243244" stroke-width="6.5" stroke-linecap="round">
+    <line x1="330" y1="170" x2="330" y2="356"/>
+    <line x1="452" y1="170" x2="452" y2="374"/>
+  </g>
+  <g stroke="#f5a623" stroke-width="2.4" stroke-linecap="round">
+    <line x1="330" y1="176" x2="330" y2="352"/>
+    <line x1="452" y1="176" x2="452" y2="370"/>
+  </g>
+  <g fill="#0d2b5b">
+    <rect x="315" y="154" width="30" height="20" rx="3"/>
+    <rect x="437" y="154" width="30" height="20" rx="3"/>
+  </g>
+  <g fill="#f5a623"><circle cx="330" cy="164" r="4"/><circle cx="452" cy="164" r="4"/></g>
+
+  <!-- rótulos -->
+  <g font-family="Montserrat, system-ui, sans-serif" font-weight="700">
+    <line x1="536" y1="245" x2="590" y2="245" stroke="#0d2b5b" stroke-opacity="0.5" stroke-width="1.4"/>
+    <circle cx="536" cy="245" r="3" fill="#0d2b5b"/>
+    <text x="596" y="242" font-size="14" fill="#0d2b5b">Fundación</text>
+    <line x1="558" y1="378" x2="584" y2="378" stroke="#6a7280" stroke-width="1.6"/>
+    <circle cx="558" cy="378" r="3" fill="#6a7280"/>
+    <text x="590" y="375" font-size="11" fill="#0d2b5b">Inyección cementicia</text>
+    <text x="590" y="391" font-size="10" font-weight="600" fill="#5a616e">consolida el apoyo</text>
+    <text x="26" y="376" font-size="10.5" font-weight="700" letter-spacing="0.12em" fill="#0d2b5b" opacity="0.55">SUELO DE APOYO</text>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+# dependencias
+node_modules/
+
+# build
+dist/
+.astro/
+
+# entorno
+.env
+.env.production
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# El .gitignore raíz ignora *.jpg/*.jpeg globalmente; acá re-incluimos
+# los assets de la web para que las fotos SÍ se versionen.
+!public/assets/**
+
