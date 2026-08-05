@@ -82,6 +82,6 @@ byb-web/
 
 - [ ] Cargar fotos reales (hero, 3 casos, equipo) y `og-image.jpg`.
 - [ ] Datos de contacto reales (teléfono, redes).
-- [ ] Deploy (recomendado: Vercel, Netlify o Cloudflare Pages — gratis para estáticos).
+- [npm run deploy manual ] Deploy (recomendado: Vercel, Netlify o Cloudflare Pages — gratis para estáticos).
 - [ ] (Futuro) Panel de gestión / sistema: se integra como app aparte o con islas React.
 ```
