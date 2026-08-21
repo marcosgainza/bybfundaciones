@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 820" role="img" aria-label="Fondo decorativo: mezcladora e inyectora de cemento trabajando en obra">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a2147"/>
+      <stop offset="0.55" stop-color="#0d2b5b"/>
+      <stop offset="1" stop-color="#123362"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.72" cy="0.46" r="0.62">
+      <stop offset="0" stop-color="#2f5aa0" stop-opacity="0.55"/>
+      <stop offset="0.6" stop-color="#123362" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#0a2147" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="leftFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0a2147" stop-opacity="1"/>
+      <stop offset="0.42" stop-color="#0a2147" stop-opacity="0.94"/>
+      <stop offset="0.72" stop-color="#0a2147" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#0a2147" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a9b7d1"/>
+      <stop offset="1" stop-color="#7484a6"/>
+    </linearGradient>
+    <linearGradient id="metalDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5d6c8e"/>
+      <stop offset="1" stop-color="#3f4c6b"/>
+    </linearGradient>
+    <linearGradient id="drum" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c3cee2"/>
+      <stop offset="0.5" stop-color="#8d9ec2"/>
+      <stop offset="1" stop-color="#5d6c8e"/>
+    </linearGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#ffffff" opacity="0.22"/>
+    </pattern>
+    <mask id="dotsMask">
+      <rect width="1920" height="820" fill="url(#dotsFade)"/>
+    </mask>
+    <linearGradient id="dotsFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="1"/>
+    </linearGradient>
+    <clipPath id="frame"><rect width="1920" height="820"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- base -->
+    <rect width="1920" height="820" fill="url(#bg)"/>
+    <rect width="1920" height="820" fill="url(#glow)"/>
+
+    <!-- textura de puntos, se desvanece hacia la izquierda para dejar zona limpia para texto -->
+    <rect width="1920" height="820" fill="url(#dots)" mask="url(#dotsMask)"/>
+
+    <!-- chevrón diagonal grande, eco del isologo B&B, muy sutil -->
+    <g opacity="0.07" fill="#ffffff">
+      <path d="M1660 -40 L1920 220 L1920 340 L1660 80 L1400 340 L1400 220 Z"/>
+    </g>
+    <g opacity="0.05" fill="#f5a623">
+      <path d="M1660 860 L1920 600 L1920 480 L1660 740 L1400 480 L1400 600 Z"/>
+    </g>
+
+    <!-- franja de suelo compactado, borde inferior derecho -->
+    <g>
+      <rect x="960" y="742" width="960" height="78" fill="#0a2147"/>
+      <rect x="960" y="742" width="960" height="78" fill="#000000" opacity="0.18"/>
+      <line x1="960" y1="742" x2="1920" y2="742" stroke="#f5a623" stroke-opacity="0.35" stroke-width="1.5"/>
+      <g stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.2" stroke-dasharray="6 8">
+        <line x1="960" y1="768" x2="1920" y2="768"/>
+        <line x1="960" y1="796" x2="1920" y2="796"/>
+      </g>
+    </g>
+
+    <!-- grupo de maquinaria: escalado/reubicado en conjunto -->
+    <g transform="translate(1560,660) scale(1.22) translate(-1560,-660) translate(-30,-6)">
+
+    <!-- ===================== INYECTORA (bomba de lechada) ===================== -->
+    <g>
+      <!-- sombra -->
+      <ellipse cx="1150" cy="716" rx="150" ry="20" fill="#000000" opacity="0.22"/>
+
+      <!-- chasis / patín -->
+      <rect x="1032" y="676" width="240" height="30" rx="6" fill="url(#metalDark)"/>
+      <circle cx="1064" cy="706" r="17" fill="#2c3654"/>
+      <circle cx="1064" cy="706" r="7" fill="#0d1226"/>
+      <circle cx="1240" cy="706" r="17" fill="#2c3654"/>
+      <circle cx="1240" cy="706" r="7" fill="#0d1226"/>
+
+      <!-- gabinete principal -->
+      <rect x="1046" y="500" width="212" height="182" rx="10" fill="url(#metal)"/>
+      <rect x="1046" y="500" width="212" height="182" rx="10" fill="#ffffff" opacity="0.04"/>
+      <rect x="1046" y="500" width="212" height="34" rx="10" fill="#3f4c6b"/>
+      <text x="1152" y="524" text-anchor="middle" font-family="Montserrat, system-ui, sans-serif" font-weight="700" font-size="14" letter-spacing="0.08em" fill="#eef2fa">B&amp;B</text>
+
+      <!-- manómetro -->
+      <circle cx="1096" cy="588" r="30" fill="#eef2fa"/>
+      <circle cx="1096" cy="588" r="30" fill="none" stroke="#3f4c6b" stroke-width="4"/>
+      <circle cx="1096" cy="588" r="3" fill="#e8801a"/>
+      <line x1="1096" y1="588" x2="1112" y2="574" stroke="#e8801a" stroke-width="3" stroke-linecap="round"/>
+      <g stroke="#3f4c6b" stroke-width="2">
+        <line x1="1096" y1="562" x2="1096" y2="568"/>
+        <line x1="1122" y1="588" x2="1116" y2="588"/>
+        <line x1="1070" y1="588" x2="1076" y2="588"/>
+      </g>
+
+      <!-- panel de control -->
+      <rect x="1140" y="562" width="94" height="56" rx="6" fill="#2c3654"/>
+      <circle cx="1160" cy="580" r="7" fill="#f5a623"/>
+      <circle cx="1184" cy="580" r="7" fill="#5ee6a3"/>
+      <circle cx="1208" cy="580" r="7" fill="#e75858"/>
+      <rect x="1152" y="596" width="70" height="10" rx="3" fill="#0d1226"/>
+
+      <!-- rejilla motor -->
+      <g stroke="#3f4c6b" stroke-width="4" stroke-linecap="round">
+        <line x1="1066" y1="640" x2="1066" y2="666"/>
+        <line x1="1080" y1="640" x2="1080" y2="666"/>
+        <line x1="1094" y1="640" x2="1094" y2="666"/>
+        <line x1="1108" y1="640" x2="1108" y2="666"/>
+        <line x1="1122" y1="640" x2="1122" y2="666"/>
+      </g>
+
+      <!-- salida y mangueras hacia las lanzas -->
+      <path d="M1258 640 C 1320 640, 1330 690, 1330 706" fill="none" stroke="#2c3654" stroke-width="10" stroke-linecap="round"/>
+      <path d="M1258 640 C 1320 640, 1330 690, 1330 706" fill="none" stroke="#f5a623" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+    </g>
+
+    <!-- ===================== LANZAS DE INYECCIÓN hacia el suelo ===================== -->
+    <g>
+      <g stroke="#2c3654" stroke-width="9" stroke-linecap="round">
+        <line x1="1330" y1="706" x2="1330" y2="800"/>
+        <line x1="1392" y1="706" x2="1392" y2="800"/>
+      </g>
+      <g stroke="#f5a623" stroke-width="3" stroke-linecap="round" opacity="0.9">
+        <line x1="1330" y1="706" x2="1330" y2="796"/>
+        <line x1="1392" y1="706" x2="1392" y2="796"/>
+      </g>
+      <path d="M1330 706 C 1350 706, 1372 706, 1392 706" fill="none" stroke="#2c3654" stroke-width="9" stroke-linecap="round"/>
+      <!-- bulbo de lechada consolidada -->
+      <ellipse cx="1361" cy="800" rx="70" ry="16" fill="#c9c3b4" opacity="0.55"/>
+    </g>
+
+    <!-- ===================== MEZCLADORA (trompo sobre carro) ===================== -->
+    <g>
+      <ellipse cx="1660" cy="726" rx="190" ry="22" fill="#000000" opacity="0.22"/>
+
+      <!-- eje y ruedas del carro -->
+      <line x1="1560" y1="694" x2="1760" y2="694" stroke="url(#metalDark)" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="1580" cy="700" r="32" fill="#1f2740"/>
+      <circle cx="1580" cy="700" r="32" fill="none" stroke="#5d6c8e" stroke-width="5"/>
+      <circle cx="1580" cy="700" r="9" fill="#5d6c8e"/>
+      <circle cx="1740" cy="700" r="32" fill="#1f2740"/>
+      <circle cx="1740" cy="700" r="32" fill="none" stroke="#5d6c8e" stroke-width="5"/>
+      <circle cx="1740" cy="700" r="9" fill="#5d6c8e"/>
+
+      <!-- pata de apoyo delantera -->
+      <path d="M1592 668 L1560 726" stroke="url(#metalDark)" stroke-width="10" stroke-linecap="round"/>
+
+      <!-- bastidor -->
+      <path d="M1560 668 L1780 660 L1780 640 L1560 648 Z" fill="url(#metalDark)"/>
+
+      <!-- tambor / trompo, inclinado -->
+      <g transform="translate(1668,556) rotate(18)">
+        <path d="M-92 78 C -92 118, -34 140, 30 132 C 88 126, 120 96, 108 40 C 96 -18, 30 -66, -34 -58 C -84 -52, -92 30, -92 78 Z" fill="url(#drum)"/>
+        <path d="M-92 78 C -92 118, -34 140, 30 132 C 88 126, 120 96, 108 40" fill="none" stroke="#3f4c6b" stroke-width="4" opacity="0.5"/>
+        <!-- espiras del tambor -->
+        <g stroke="#3f4c6b" stroke-width="3.5" fill="none" opacity="0.55">
+          <path d="M-70 10 C -30 -30, 40 -30, 80 20"/>
+          <path d="M-84 45 C -34 5, 50 5, 100 55"/>
+          <path d="M-88 82 C -30 46, 60 46, 104 90"/>
+        </g>
+        <!-- boca de carga -->
+        <ellipse cx="-70" cy="-40" rx="26" ry="16" fill="#3f4c6b"/>
+        <ellipse cx="-70" cy="-40" rx="26" ry="16" fill="none" stroke="#eef2fa" stroke-width="2" opacity="0.4"/>
+      </g>
+
+      <!-- motor reductor trasero -->
+      <rect x="1750" y="606" width="54" height="46" rx="6" fill="url(#metal)"/>
+      <circle cx="1777" cy="629" r="14" fill="#2c3654"/>
+
+      <!-- tolva / canaleta de descarga -->
+      <path d="M1592 640 L1548 726 L1584 730 L1616 646 Z" fill="url(#metal)"/>
+      <path d="M1592 640 L1548 726" stroke="#eef2fa" stroke-opacity="0.35" stroke-width="2"/>
+
+      <!-- manguera de alimentación desde la inyectora -->
+      <path d="M1330 660 C 1420 590, 1520 590, 1590 636" fill="none" stroke="#2c3654" stroke-width="9" stroke-linecap="round"/>
+      <path d="M1330 660 C 1420 590, 1520 590, 1590 636" fill="none" stroke="#f5a623" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+    </g>
+
+    </g>
+
+    <!-- velo de contraste izquierdo para legibilidad de texto sobre el fondo -->
+    <rect width="1920" height="820" fill="url(#leftFade)"/>
+
+    <!-- viñeta superior/inferior sutil -->
+    <rect width="1920" height="820" fill="url(#glow)" opacity="0.15"/>
+  </g>
+</svg>
