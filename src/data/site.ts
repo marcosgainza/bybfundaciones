@@ -35,28 +35,38 @@ export const site = {
     facebook: 'https://www.facebook.com/profile.php?id=61592205231987',
   },
 
-  founders: ['Bruno Barbagelata', 'Fausto Barbagelata'],
+  founders: ['B. Barbagelata', 'F. Barbagelata'],
 };
 
 export const services = [
   {
     id: '01',
-    title: 'Diagnóstico y Evaluación Técnica',
-    text: 'Inspeccionamos en obra para identificar el origen del problema, evaluar el estado de la estructura y del terreno, y definir la estrategia de intervención. Es el punto de partida para evitar soluciones improvisadas.',
+    title: 'Estabilización y refuerzo de fundaciones',
+    text: 'Intervenciones destinadas a recuperar o mejorar la estabilidad de fundaciones existentes que presentan movimientos, asentamientos o pérdida de capacidad de apoyo. La solución se diseña de acuerdo con las características de la construcción, el tipo de fundación y las condiciones particulares del suelo.',
   },
   {
     id: '02',
-    title: 'Refuerzo de Fundaciones',
-    text: 'Aplicamos técnicas de inyección controlada para mejorar el terreno de apoyo y recuperar la estabilidad de fundaciones afectadas por asentamientos diferenciales, con la menor afectación posible sobre la construcción.',
+    title: 'Detención de asentamientos',
+    text: 'Soluciones orientadas a detener procesos de asentamiento que pueden manifestarse mediante fisuras, desniveles, separaciones o movimientos en distintos sectores de una construcción. La intervención busca estabilizar el conjunto suelo-fundación y evitar que el proceso continúe evolucionando y generando nuevos daños.',
   },
   {
     id: '03',
-    title: 'Mejoramiento de Suelos',
-    text: 'Intervenciones orientadas a mejorar la capacidad portante del terreno y reducir asentamientos, optimizando el comportamiento del suelo de apoyo en viviendas, edificios, plateas y estructuras existentes.',
+    title: 'Mejoramiento de la capacidad portante del suelo',
+    text: 'Intervenciones destinadas a suelos blandos o de baja capacidad portante que, por sus características, pueden requerir soluciones de fundación de mayor complejidad y costo, como plateas de gran rigidez o fundaciones profundas. El mejoramiento previo del terreno permite aumentar las tensiones admisibles y optimizar el diseño de las fundaciones, reduciendo en muchos casos el volumen de hormigón y la complejidad de la solución necesaria.',
   },
   {
     id: '04',
-    title: 'Relleno de Oquedades',
-    text: 'Corregimos cavidades y vacíos bajo pisos, plateas y fundaciones mediante inyecciones controladas, restableciendo el contacto entre el terreno y la estructura y reduciendo el riesgo de nuevos hundimientos.',
+    title: 'Relleno de oquedades y vacíos',
+    text: 'Relleno controlado de cavidades, huecos o sectores que han perdido contacto con el terreno, ya sea debajo de fundaciones, plateas, pisos u otros elementos. La intervención permite restablecer el apoyo y mejorar la continuidad del terreno en las zonas afectadas.',
+  },
+  {
+    id: '05',
+    title: 'Estabilización de piscinas',
+    text: 'Intervenciones para piscinas que presentan asentamientos, movimientos, desniveles o pérdida de apoyo como consecuencia del comportamiento del suelo circundante o ubicado debajo de su estructura. El objetivo es estabilizar el terreno y recuperar condiciones adecuadas de apoyo.',
+  },
+  {
+    id: '06',
+    title: 'Estabilización de pisos y plateas',
+    text: 'Soluciones para pisos, contrapisos y plateas que presentan hundimientos, desniveles o pérdida de apoyo debido al asentamiento del terreno o a la formación de vacíos bajo su superficie. Se intervienen los sectores afectados buscando restablecer el contacto con el suelo y estabilizar su comportamiento.',
   },
 ];

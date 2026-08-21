@@ -4,18 +4,19 @@ import { site } from '../data/site';
 ---
 
 <section id="inicio" class="hero section">
+  <div class="hero-photo-bg" aria-hidden="true"></div>
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-copy">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        <span>Ingeniería  · {site.city} · {site.region}</span>
-      </div>
+       <!--<div class="badge">-->
+        <!--<span class="badge-dot"></span>-->
+        <!--<span>Ingeniería  · {site.city} · {site.region}</span>-->
+       <!-- </div>-->
       <h1 class="hero-title">Ingeniería aplicada a la estabilización de fundaciones.</h1>
       <p class="hero-lead">
         Desarrollamos soluciones de ingenieria para el mejoramiento de suelos y la
         estabilización de fundaciones mediante técnicas de inyección controlada,
-        adaptadas a las condiciones particulares de cada estructura y de cada terreno.
+        aplicadas a las condiciones de cada estructura y terreno.
       </p>
       <p class="hero-sub">
         Intervenimos viviendas, edificios e instalaciones con asentamientos, grietas,
@@ -52,6 +53,23 @@ import { site } from '../data/site';
   .hero {
     position: relative;
     background: linear-gradient(180deg, var(--paper) 0%, var(--mist) 100%);
+    overflow: hidden;
+  }
+  .hero-photo-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(6, 14, 32, 0.78) 0%,
+        rgba(7, 16, 35, 0.68) 42%,
+        rgba(9, 20, 43, 0.58) 100%
+      ),
+      url('/assets/images/hero-inyeccion-maquina.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center 28%;
+    background-size: 100% 100%, cover;
+    pointer-events: none;
   }
   .hero-grid-bg {
     position: absolute;
@@ -78,6 +96,8 @@ import { site } from '../data/site';
   .hero-copy {
     grid-area: copy;
     align-self: end;
+    position: relative;
+    z-index: 1;
   }
   .hero-actions {
     grid-area: actions;
@@ -116,27 +136,38 @@ import { site } from '../data/site';
     font-size: clamp(34px, 5vw, 60px);
     line-height: 1.04;
     letter-spacing: -0.02em;
-    color: var(--navy);
+    color: #fff;
+    text-shadow: 0 4px 24px rgba(4, 10, 24, 0.45);
   }
   .hero-lead {
     margin-top: 22px;
     max-width: 54ch;
     font-size: clamp(16px, 1.4vw, 18.5px);
     line-height: 1.6;
-    color: #3a4150;
+    color: rgba(255, 255, 255, 0.88);
+    text-shadow: 0 2px 14px rgba(4, 10, 24, 0.35);
   }
   .hero-sub {
     margin-top: 16px;
     max-width: 54ch;
     font-size: 15.5px;
     line-height: 1.6;
-    color: #5a616e;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 0 2px 14px rgba(4, 10, 24, 0.35);
   }
   .hero-actions {
     margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
     gap: 13px;
+  }
+  .hero-actions .btn-ghost {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+  .hero-actions .btn-ghost:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
   }
   .hero-media {
     position: relative;

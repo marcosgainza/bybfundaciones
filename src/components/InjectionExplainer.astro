@@ -1,0 +1,321 @@
+---
+// Animación explicativa de "inyección controlada" — reemplaza el diagrama
+// estático del Hero. Secuencia de 5 escenas en loop, sin chrome de "video
+// falso" (sin reproductor/scrubber): solo la ilustración, el texto y unos
+// puntos de progreso mínimos.
+interface Props {
+  height?: string;
+}
+const { height = 'clamp(360px,42vw,480px)' } = Astro.props;
+---
+
+<div class="inj" style={`height:${height}`}>
+  <div class="inj-stage" id="injStage"></div>
+  <div class="inj-foot">
+    <div class="inj-text">
+      <span class="inj-eyebrow" id="injEyebrow"></span>
+      <span class="inj-title" id="injTitle"></span>
+    </div>
+    <div class="inj-dots" id="injDots" role="tablist" aria-label="Etapas del proceso"></div>
+  </div>
+</div>
+
+<style>
+  .inj {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, #faf6ee 0%, #ece3d2 100%);
+    border-radius: inherit;
+    overflow: hidden;
+  }
+  .inj-stage {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+  }
+  .inj-stage svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .inj-scene {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .inj-scene.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .inj-foot {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px clamp(14px, 2.4vw, 22px);
+    background: rgba(252, 250, 246, 0.92);
+    border-top: 1px solid rgba(13, 43, 91, 0.08);
+    backdrop-filter: blur(2px);
+  }
+  .inj-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .inj-eyebrow {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+  .inj-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .inj-dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .inj-dot {
+    width: 18px;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(13, 43, 91, 0.16);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+  }
+  .inj-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .inj-dot.is-active::after {
+    animation: injFill linear forwards;
+    animation-duration: var(--inj-duration, 4000ms);
+  }
+  .inj-dot.is-done::after {
+    transform: scaleX(1);
+  }
+  @keyframes injFill {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .inj-scene {
+      transition: none;
+    }
+    .inj-dot::after {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  const NAVY = '#0d2b5b';
+  const ACCENT = '#f5a623';
+  const ACCENT_STRONG = '#b5680a';
+  const SAND = '#e7ddca';
+  const LINE = '#c9bfa8';
+
+  function crackSVG() {
+    return `
+    <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="300" fill="${SAND}"/>
+      <rect y="188" width="400" height="112" fill="#ddd0b2"/>
+      <rect x="118" y="34" width="150" height="150" fill="#f8f4ea" stroke="${NAVY}" stroke-width="2.5"/>
+      <rect x="118" y="34" width="150" height="18" fill="${NAVY}"/>
+      <path d="M198 52 Q206 92 190 122 Q182 146 194 172 L200 188" fill="none" stroke="${ACCENT_STRONG}" stroke-width="3.4" stroke-linecap="round"
+        stroke-dasharray="190" stroke-dashoffset="190" style="animation:injDraw 1.2s .3s ease forwards"/>
+      <g style="animation:injFloatDown 1.6s 1.1s infinite">
+        <path d="M148 198 l-8 -10 h5 v-13 h6 v13 h5 z" fill="${ACCENT_STRONG}"/>
+      </g>
+      <g style="animation:injFloatDown 1.6s 1.35s infinite">
+        <path d="M232 198 l-8 -10 h5 v-13 h6 v13 h5 z" fill="${ACCENT_STRONG}"/>
+      </g>
+    </svg>`;
+  }
+
+  function drillSVG() {
+    return `
+    <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="300" fill="${SAND}"/>
+      <rect y="188" width="400" height="112" fill="#ddd0b2"/>
+      <line x1="0" y1="188" x2="400" y2="188" stroke="${LINE}" stroke-width="2" stroke-dasharray="7 5"/>
+      <rect x="150" y="60" width="10" height="18" fill="${NAVY}"/>
+      <path d="M155 78 L235 210" stroke="${NAVY}" stroke-width="9" stroke-linecap="round"
+        stroke-dasharray="180" stroke-dashoffset="180" style="animation:injDraw 1.1s .2s ease forwards"/>
+      <circle cx="235" cy="210" r="0" fill="${ACCENT}" style="animation:injPop .5s 1.2s ease-out forwards"/>
+      <g transform="translate(150,60)">
+        <rect x="-26" y="-30" width="52" height="30" rx="4" fill="${NAVY}"/>
+        <circle cx="0" cy="-15" r="6" fill="${ACCENT}"/>
+      </g>
+      <text x="200" y="270" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="11" font-weight="700" fill="${NAVY}" opacity=".8">PERFORACIÓN INCLINADA</text>
+    </svg>`;
+  }
+
+  function injectSVG() {
+    return `
+    <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="300" fill="${SAND}"/>
+      <rect y="150" width="400" height="150" fill="#ddd0b2"/>
+      <path d="M150 60 L245 195" stroke="${NAVY}" stroke-width="9" stroke-linecap="round"/>
+      <g transform="translate(245,195)">
+        <ellipse cx="0" cy="0" rx="0" ry="0" fill="${ACCENT}" opacity=".22" style="animation:injBulbOuter 1.1s .3s cubic-bezier(.3,1.4,.5,1) forwards"/>
+        <ellipse cx="0" cy="0" rx="0" ry="0" fill="${ACCENT_STRONG}" opacity=".92" style="animation:injBulbMid .95s .5s cubic-bezier(.3,1.4,.5,1) forwards"/>
+      </g>
+      <g transform="translate(150,60)">
+        <rect x="-26" y="-30" width="52" height="30" rx="4" fill="${NAVY}"/>
+        <circle cx="0" cy="-15" r="6" fill="${ACCENT}"/>
+      </g>
+      <g transform="translate(316,88)">
+        <circle cx="0" cy="0" r="26" fill="#f8f4ea" stroke="${NAVY}" stroke-width="2.4"/>
+        <line x1="0" y1="0" x2="0" y2="-16" stroke="${ACCENT_STRONG}" stroke-width="2.6" stroke-linecap="round"
+          style="transform-origin:0 0; animation:injGauge 1s .5s cubic-bezier(.2,.9,.3,1) both"/>
+        <circle cx="0" cy="0" r="2.4" fill="${NAVY}"/>
+        <text x="0" y="42" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="${NAVY}">kg/cm²</text>
+      </g>
+    </svg>`;
+  }
+
+  function monitorSVG() {
+    return `
+    <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="300" fill="${SAND}"/>
+      <rect y="150" width="400" height="150" fill="#ddd0b2"/>
+      <path d="M150 60 L245 195" stroke="${NAVY}" stroke-width="9" stroke-linecap="round"/>
+      <g transform="translate(245,195)">
+        <ellipse cx="0" cy="0" rx="60" ry="27" fill="${ACCENT_STRONG}" opacity=".9"/>
+      </g>
+      <g transform="translate(150,60)">
+        <rect x="-26" y="-30" width="52" height="30" rx="4" fill="${NAVY}"/>
+        <circle cx="0" cy="-15" r="6" fill="${ACCENT}"/>
+      </g>
+      <g transform="translate(96,236)">
+        <rect x="0" y="0" width="220" height="52" rx="7" fill="#f8f4ea" stroke="${LINE}" stroke-width="1.4"/>
+        <path d="M10 38 L44 30 L78 34 L112 20 L146 24 L182 10 L210 14" fill="none" stroke="${ACCENT_STRONG}" stroke-width="2.4" stroke-linecap="round"
+          stroke-dasharray="260" stroke-dashoffset="260" style="animation:injDraw 1.4s .3s ease forwards"/>
+        <text x="14" y="18" font-family="Montserrat,sans-serif" font-size="9.5" font-weight="700" fill="${NAVY}" opacity=".7">DEFORMACIÓN ≤ 0,7 mm/etapa</text>
+      </g>
+    </svg>`;
+  }
+
+  function resultSVG() {
+    return `
+    <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="300" fill="${SAND}"/>
+      <rect y="188" width="400" height="112" fill="#ddd0b2"/>
+      <rect x="118" y="34" width="150" height="150" fill="#f8f4ea" stroke="${NAVY}" stroke-width="2.5"/>
+      <rect x="118" y="34" width="150" height="18" fill="${NAVY}"/>
+      <path d="M198 52 Q206 92 190 122 Q182 146 194 172 L200 188" fill="none" stroke="${LINE}" stroke-width="2.6" stroke-linecap="round" opacity=".55"/>
+      <g transform="translate(268,44)">
+        <circle cx="0" cy="0" r="0" fill="${ACCENT}" style="animation:injPop .5s .3s cubic-bezier(.2,1.5,.4,1) forwards"/>
+        <path d="M-7 0 L-2 6 L8 -6" fill="none" stroke="${NAVY}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
+          stroke-dasharray="20" stroke-dashoffset="20" style="animation:injDraw .45s .75s ease forwards"/>
+      </g>
+      <g transform="translate(122,208)" style="animation:injFloatUp 1.4s infinite">
+        <path d="M0 16 l-7 -9 h5 v-11 h4 v11 h5 z" fill="${ACCENT_STRONG}"/>
+      </g>
+      <g transform="translate(150,214)" style="animation:injFloatUp 1.4s .18s infinite">
+        <path d="M0 16 l-7 -9 h5 v-11 h4 v11 h5 z" fill="${ACCENT_STRONG}"/>
+      </g>
+    </svg>`;
+  }
+
+  const SCENES = [
+    { eyebrow: 'Etapa 01', title: 'Detectamos el problema', svg: crackSVG, dur: 3600 },
+    { eyebrow: 'Etapa 02', title: 'Perforación de precisión', svg: drillSVG, dur: 3600 },
+    { eyebrow: 'Etapa 03', title: 'Inyección controlada', svg: injectSVG, dur: 4000 },
+    { eyebrow: 'Etapa 04', title: 'Monitoreo permanente', svg: monitorSVG, dur: 3800 },
+    { eyebrow: 'Etapa 05', title: 'Fundación estabilizada', svg: resultSVG, dur: 4200 },
+  ];
+
+  const styleTag = document.createElement('style');
+  styleTag.textContent = `
+    @keyframes injDraw { to { stroke-dashoffset: 0; } }
+    @keyframes injPop { from { r: 0; } to { r: 12; } }
+    @keyframes injBulbOuter { from { rx: 0; ry: 0; } to { rx: 58px; ry: 27px; } }
+    @keyframes injBulbMid { from { rx: 0; ry: 0; } to { rx: 40px; ry: 19px; } }
+    @keyframes injGauge { from { transform: rotate(-90deg); } to { transform: rotate(24deg); } }
+    @keyframes injFloatDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
+    @keyframes injFloatUp { 0%, 100% { transform: translateY(6px); } 50% { transform: translateY(0); } }
+  `;
+  document.head.appendChild(styleTag);
+
+  function initInjectionExplainer(root) {
+    const stage = root.querySelector('#injStage');
+    const dotsEl = root.querySelector('#injDots');
+    const eyebrowEl = root.querySelector('#injEyebrow');
+    const titleEl = root.querySelector('#injTitle');
+    if (!stage || !dotsEl || !eyebrowEl || !titleEl) return;
+
+    stage.innerHTML = SCENES.map((s, i) =>
+      `<div class="inj-scene${i === 0 ? ' is-active' : ''}" data-idx="${i}">${s.svg()}</div>`
+    ).join('');
+    dotsEl.innerHTML = SCENES.map((_, i) =>
+      `<button class="inj-dot${i === 0 ? ' is-active' : ''}" data-idx="${i}" aria-label="Etapa ${i + 1}"></button>`
+    ).join('');
+
+    const sceneEls = Array.from(stage.querySelectorAll('.inj-scene'));
+    const dotEls = Array.from(dotsEl.querySelectorAll('.inj-dot'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let idx = 0;
+    let timer = null;
+
+    function show(next) {
+      sceneEls[idx].classList.remove('is-active');
+      dotEls[idx].classList.remove('is-active');
+      dotEls[idx].classList.add('is-done');
+      idx = next;
+      sceneEls[idx].classList.add('is-active');
+      dotEls.forEach((d, i) => {
+        d.classList.toggle('is-active', i === idx);
+        if (i !== idx) d.classList.remove('is-active');
+      });
+      dotEls[idx].classList.remove('is-done');
+      eyebrowEl.textContent = SCENES[idx].eyebrow;
+      titleEl.textContent = SCENES[idx].title;
+      dotEls[idx].style.setProperty('--inj-duration', SCENES[idx].dur + 'ms');
+      if (!reduceMotion) {
+        clearTimeout(timer);
+        timer = setTimeout(() => show((idx + 1) % SCENES.length), SCENES[idx].dur);
+      }
+    }
+
+    dotEls.forEach((d) => {
+      d.addEventListener('click', () => {
+        clearTimeout(timer);
+        show(Number(d.dataset.idx));
+      });
+    });
+
+    eyebrowEl.textContent = SCENES[0].eyebrow;
+    titleEl.textContent = SCENES[0].title;
+    dotEls[0].style.setProperty('--inj-duration', SCENES[0].dur + 'ms');
+    if (!reduceMotion) {
+      timer = setTimeout(() => show(1 % SCENES.length), SCENES[0].dur);
+    }
+  }
+
+  document.querySelectorAll('.inj').forEach((el) => initInjectionExplainer(el));
+</script>
