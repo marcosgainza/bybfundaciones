@@ -247,16 +247,42 @@ const nav = [
       height: 76px;
     }
     .brand {
-      gap: 10px;
+      gap: 8px;
+      min-width: 0;
     }
     .brand-logo {
-      height: 56px;
+      height: 44px;
     }
     .brand-lockup {
+      min-width: 0;
+      max-width: 150px;
+      gap: 2px;
+    }
+    .bl-row {
+      gap: 0;
+    }
+    .bl-line,
+    .bl-dot,
+    .bl-sub-dot,
+    .bl-row-mid {
       display: none;
+    }
+    .bl-title {
+      font-size: 8.5px;
+      letter-spacing: 0.04em;
+      padding-left: 0;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .bl-sub {
+      font-size: 6px;
+      letter-spacing: 0.1em;
+      padding-left: 0;
     }
     .hamburger {
       display: flex;
+      flex: 0 0 auto;
     }
     .nav {
       position: fixed;
@@ -295,7 +321,16 @@ const nav = [
   /* ---------- Móvil chico ---------- */
   @media (max-width: 380px) {
     .brand-logo {
-      height: 48px;
+      height: 38px;
+    }
+    .brand-lockup {
+      max-width: 120px;
+    }
+    .bl-title {
+      font-size: 7.5px;
+    }
+    .bl-sub {
+      font-size: 5.5px;
     }
   }
 </style>
