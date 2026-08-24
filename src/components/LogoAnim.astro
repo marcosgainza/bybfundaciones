@@ -22,11 +22,33 @@ const cards = [
   <div class="container brand-inner">
     <div class="eyebrow">La marca</div>
     <h2 class="h2">Cómo nace nuestra empresa</h2>
-    <p class="brand-lead">
-      Nuestro compromiso es brindar soluciones técnicamente confiables, ejecutadas con
-      equipamiento especializado, monitoreo permanente y seguimiento profesional durante
-      todas las etapas del proyecto.
-    </p>
+    <div class="brand-lead">
+      <p>
+        B&B Fundaciones nace a partir de años de experiencia en ingeniería geotécnica y en
+        el análisis y gestión de soluciones para fundaciones de viviendas, edificios y
+        otras estructuras.
+      </p>
+      <p>
+        A lo largo de ese recorrido observamos una situación que se repetía con
+        frecuencia: terrenos donde los estratos superiores presentaban baja capacidad
+        portante, obligando a recurrir a fundaciones profundas, plateas de gran rigidez u
+        otras soluciones que podían resultar complejas y costosas.
+      </p>
+      <p>
+        Frente a esta problemática comenzamos a trabajar en alternativas que permitieran
+        intervenir directamente sobre el suelo y mejorar sus condiciones de soporte, dando
+        al comitente una solución mejoradora en términos técnicos y económicos. La
+        inyección de suelo-cemento surgió así como una solución versátil y de menor
+        intervención, capaz de adaptarse a distintas condiciones de terreno y fundación y,
+        en muchos casos, optimizar significativamente los costos de la solución.
+      </p>
+      <p>
+        A partir de esa experiencia nace B&B Fundaciones, con la idea de aplicar este
+        conocimiento no solo al mejoramiento previo de terrenos, sino también a la
+        estabilización de fundaciones existentes, la detención de asentamientos y otras
+        problemáticas asociadas al comportamiento del suelo.
+      </p>
+    </div>
 
     <div class="brand-anim" aria-hidden="true">
       {
@@ -77,10 +99,14 @@ const cards = [
   }
   .brand-lead {
     margin: 16px auto 0;
-    max-width: 54ch;
+    max-width: 68ch;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.65;
     color: #4a515e;
+    text-align: left;
+  }
+  .brand-lead p + p {
+    margin-top: 14px;
   }
 
   .brand-anim {
