@@ -255,18 +255,27 @@ const nav = [
     }
     .brand-lockup {
       min-width: 0;
-      max-width: 190px;
-      gap: 3px;
+      max-width: 215px;
+      gap: 4px;
       margin-top: 11px;
     }
     .bl-row {
-      gap: 0;
+      gap: 5px;
     }
-    .bl-line,
-    .bl-dot,
-    .bl-sub-dot,
     .bl-row-mid {
-      display: none;
+      gap: 5px;
+      width: 100%;
+    }
+    .bl-line {
+      width: 8px;
+    }
+    .bl-dot {
+      width: 4px;
+      height: 4px;
+    }
+    .bl-sub-dot {
+      width: 3px;
+      height: 3px;
     }
     .bl-title {
       font-size: 10px;
@@ -321,12 +330,21 @@ const nav = [
 
   /* ---------- Móvil chico ---------- */
   @media (max-width: 380px) {
+    .brand {
+      gap: 6px;
+    }
     .brand-logo {
       height: 38px;
     }
     .brand-lockup {
-      max-width: 130px;
+      max-width: 165px;
       margin-top: 8px;
+    }
+    .bl-row {
+      gap: 4px;
+    }
+    .bl-line {
+      width: 6px;
     }
     .bl-title {
       font-size: 8.5px;
