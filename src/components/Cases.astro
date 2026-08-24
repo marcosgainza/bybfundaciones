@@ -22,7 +22,7 @@ const cases = [
       ['Intervención.', 'Inyecciones controladas de mortero para rellenar la cavidad y restituir el contacto entre el suelo y la estructura.'],
       ['Resultado.', 'Apoyo del contrapiso recuperado y riesgo de nuevos hundimientos reducido.'],
     ],
-    img: 'bb-caso2',
+    img: 'caso-2.png',
   },
   {
     n: 'Caso 03',
@@ -51,11 +51,11 @@ const cases = [
 
   <div class="cases-list" data-reveal="group">
     {
-      cases.map((c, i) => (
-        <article class={`case${i % 2 === 1 ? ' case-alt' : ''}`}>
+      cases.map((c) => (
+        <article class="case">
           <div class="case-media">
             <ImageSlot
-              src={`/assets/images/${c.img}.svg`}
+              src={`/assets/images/${c.img.includes('.') ? c.img : `${c.img}.svg`}`}
               alt={`Esquema: ${c.title}`}
               placeholder={`Foto del ${c.n.toLowerCase()}`}
               height="clamp(220px,22vw,280px)"
