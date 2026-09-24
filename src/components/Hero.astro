@@ -1,40 +1,25 @@
 ---
-import ImageSlot from './ImageSlot.astro';
-import { site } from '../data/site';
+import { withBase } from '../lib/url';
 ---
 
 <section id="inicio" class="hero section">
   <div class="hero-photo-bg" aria-hidden="true"></div>
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <div class="hero-copy">
-       <!--<div class="badge">-->
-        <!--<span class="badge-dot"></span>-->
-        <!--<span>Ingeniería  · {site.city} · {site.region}</span>-->
-       <!-- </div>-->
-      <h1 class="hero-title">Ingeniería aplicada a la estabilización de fundaciones.</h1>
-      <p class="hero-lead">
-        Desarrollamos soluciones de ingenieria para el mejoramiento de suelos y la
-        estabilización de fundaciones mediante técnicas de inyección controlada,
-        aplicadas a las condiciones de cada estructura y terreno.
-      </p>
-      <p class="hero-sub">
-        Intervenimos viviendas, edificios e instalaciones con asentamientos, grietas,
-        hundimientos u oquedades, priorizando el análisis técnico, la seguridad
-        estructural y la mínima afectación de la obra existente.
-      </p>
-    </div>
+    <h1 class="hero-title">Ingeniería aplicada a la estabilización de fundaciones.</h1>
 
     <div class="hero-media">
       <div class="hero-frame">
-        <ImageSlot
-          src="/assets/images/inyeccion-controlada.svg"
-          alt="Esquema de inyección controlada: refuerzo del suelo de apoyo bajo la fundación"
-          placeholder="Foto de obra / inyección"
-          height="clamp(360px,42vw,480px)"
-          fit="contain"
-          loading="eager"
-        />
+        <video
+          class="hero-video"
+          controls
+          playsinline
+          preload="metadata"
+          poster={withBase('/assets/video/metodo-inyeccion-controlada.jpg')}
+          aria-label="Video: método de inyección controlada para estabilizar fundaciones, paso a paso"
+        >
+          <source src={withBase('/assets/video/metodo-inyeccion-controlada.mp4')} type="video/mp4" />
+        </video>
       </div>
       <div class="hero-chip">
         <div class="hero-chip-k">Método</div>
@@ -42,9 +27,23 @@ import { site } from '../data/site';
       </div>
     </div>
 
-    <div class="hero-actions">
-      <a href="#contacto" class="btn btn-accent cta-pulse">Solicitar evaluación técnica →</a>
-      <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+    <div class="hero-bottom">
+      <div class="hero-copy">
+        <p class="hero-lead">
+          Desarrollamos soluciones de ingenieria para el mejoramiento de suelos y la
+          estabilización de fundaciones mediante técnicas de inyección controlada,
+          aplicadas a las condiciones de cada estructura y terreno.
+        </p>
+        <p class="hero-sub">
+          Intervenimos viviendas, edificios e instalaciones con asentamientos, grietas,
+          hundimientos u oquedades, priorizando el análisis técnico, la seguridad
+          estructural y la mínima afectación de la obra existente.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-accent cta-pulse">Solicitar evaluación técnica →</a>
+        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+      </div>
     </div>
   </div>
 </section>
@@ -60,10 +59,10 @@ import { site } from '../data/site';
     inset: 0;
     background-image:
       linear-gradient(
-        90deg,
-        rgba(6, 14, 32, 0.78) 0%,
-        rgba(7, 16, 35, 0.68) 42%,
-        rgba(9, 20, 43, 0.58) 100%
+        180deg,
+        rgba(6, 14, 32, 0.74) 0%,
+        rgba(7, 16, 35, 0.66) 50%,
+        rgba(9, 20, 43, 0.78) 100%
       ),
       url('/assets/images/hero-inyeccion-maquina.jpg');
     background-repeat: no-repeat, no-repeat;
@@ -81,31 +80,30 @@ import { site } from '../data/site';
     pointer-events: none;
     mask-image: linear-gradient(180deg, #000, transparent 88%);
   }
+  /* Titulo a lo ancho, video grande al medio, texto + botones abajo */
   .hero-inner {
+    --hero-w: min(100%, 980px, calc((100svh - 330px) * 16 / 9));
     position: relative;
-    padding-block: clamp(48px, 7vw, 96px);
-    display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
-    grid-template-areas:
-      'copy media'
-      'actions media';
-    column-gap: clamp(28px, 4vw, 60px);
-    row-gap: 0;
+    padding-block: clamp(40px, 5vw, 72px);
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
-  .hero-copy {
-    grid-area: copy;
-    align-self: end;
+  .hero-media {
+    width: max(var(--hero-w), 560px);
+    max-width: 100%;
+    margin-top: clamp(24px, 3vw, 36px);
+  }
+  .hero-bottom {
+    width: max(var(--hero-w), 560px);
+    max-width: 100%;
+    margin-top: clamp(32px, 4vw, 48px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 20px 40px;
+    align-items: center;
     position: relative;
     z-index: 1;
-  }
-  .hero-actions {
-    grid-area: actions;
-    align-self: start;
-  }
-  .hero-media {
-    grid-area: media;
-    align-self: center;
   }
   .badge {
     display: inline-flex;
@@ -131,35 +129,35 @@ import { site } from '../data/site';
     color: var(--navy);
   }
   .hero-title {
-    margin-top: 24px;
+    max-width: 30ch;
+    text-align: center;
+    text-wrap: balance;
     font-weight: 800;
-    font-size: clamp(34px, 5vw, 60px);
+    font-size: clamp(32px, 4.4vw, 56px);
     line-height: 1.04;
     letter-spacing: -0.02em;
     color: #fff;
     text-shadow: 0 4px 24px rgba(4, 10, 24, 0.45);
   }
   .hero-lead {
-    margin-top: 22px;
-    max-width: 54ch;
+    max-width: 62ch;
     font-size: clamp(16px, 1.4vw, 18.5px);
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.88);
     text-shadow: 0 2px 14px rgba(4, 10, 24, 0.35);
   }
   .hero-sub {
-    margin-top: 16px;
-    max-width: 54ch;
+    margin-top: 12px;
+    max-width: 62ch;
     font-size: 15.5px;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.7);
     text-shadow: 0 2px 14px rgba(4, 10, 24, 0.35);
   }
   .hero-actions {
-    margin-top: 32px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 13px;
+    flex-direction: column;
+    gap: 12px;
   }
   .hero-actions .btn-ghost {
     color: #fff;
@@ -180,10 +178,25 @@ import { site } from '../data/site';
     box-shadow: 0 24px 60px -24px rgba(13, 43, 91, 0.4);
     border: 1px solid #e0e3e8;
   }
+  /* Pelicula oscura sutil sobre el video (no bloquea los clics) */
+  .hero-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 14, 32, 0.18);
+    pointer-events: none;
+  }
+  .hero-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--navy);
+  }
+  /* Arriba a la derecha: abajo a la izquierda tapaba los controles del video */
   .hero-chip {
     position: absolute;
-    left: -14px;
-    bottom: -14px;
+    right: -14px;
+    top: -14px;
     background: var(--navy);
     color: #fff;
     padding: 16px 20px;
@@ -204,24 +217,26 @@ import { site } from '../data/site';
   }
 
   @media (max-width: 860px) {
-    .hero-inner {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        'copy'
-        'media'
-        'actions';
-      row-gap: 36px;
-    }
-    .hero-copy,
     .hero-media,
-    .hero-actions {
-      align-self: auto;
+    .hero-bottom {
+      width: 100%;
+    }
+    .hero-bottom {
+      grid-template-columns: 1fr;
     }
     .hero-actions {
-      margin-top: 0;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
+    /* En celu el video es chico: el chip va debajo, no encima */
     .hero-chip {
-      left: 12px;
+      position: static;
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 14px;
+    }
+    .hero-chip-v {
+      font-size: 14px;
     }
   }
 </style>
