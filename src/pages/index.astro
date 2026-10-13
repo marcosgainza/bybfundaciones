@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Ficha from '../components/Ficha.astro';
 import Pillars from '../components/Pillars.astro';
 import Problems from '../components/Problems.astro';
 import Services from '../components/Services.astro';
@@ -14,6 +15,7 @@ import LogoAnim from '../components/LogoAnim.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import WhatsappFloat from '../components/WhatsappFloat.astro';
+import { site } from '../data/site';
 ---
 
 <Base>
@@ -21,14 +23,40 @@ import WhatsappFloat from '../components/WhatsappFloat.astro';
   <main>
     <Hero />
     <Pillars />
-    <Problems />
-    <Services />
-    <Methodology />
-    <WhyUs />
-    <Cases />
-    <Faq />
-    <About />
-    <LogoAnim />
+    <div class="fichero">
+    <Ficha id="problemas" label="El problema" title="¿Tu propiedad presenta alguno de estos problemas?">
+      <Problems />
+    </Ficha>
+    <Ficha
+      id="servicios"
+      label="Nuestros servicios"
+      title="Soluciones de ingeniería para estabilizar fundaciones y mejorar el suelo."
+    >
+      <Services />
+    </Ficha>
+    <Ficha id="metodologia" label="Cómo trabajamos" title="Nuestra metodología de trabajo">
+      <Methodology />
+    </Ficha>
+    <Ficha id="porque" label="Por qué elegirnos" title={`¿Por qué elegir ${site.name}?`}>
+      <WhyUs />
+    </Ficha>
+    <Ficha id="casos" label="Obras realizadas" title="Problemas resueltos, no solo fotos.">
+      <Cases />
+    </Ficha>
+    <Ficha id="faq" label="Preguntas frecuentes" title="Las dudas más comunes, respondidas.">
+      <Faq />
+    </Ficha>
+    <Ficha
+      id="nosotros"
+      label="Quiénes somos"
+      title="Ingeniería, experiencia y compromiso en cada intervención."
+    >
+      <About />
+    </Ficha>
+    <Ficha id="marca" label="La marca" title="Cómo nace nuestra empresa">
+      <LogoAnim />
+    </Ficha>
+    </div>
     <Contact />
   </main>
   <Footer />

@@ -2,13 +2,8 @@
 import { faqs } from '../data/faq';
 ---
 
-<section id="faq" class="section faq">
+<section class="faq">
   <div class="container faq-inner">
-    <div class="faq-head">
-      <div class="eyebrow">Preguntas frecuentes</div>
-      <h2 class="h2">Las dudas más comunes, respondidas.</h2>
-    </div>
-
     <div class="faq-grid">
       {
         faqs.map((f, i) => (
@@ -47,10 +42,6 @@ import { faqs } from '../data/faq';
   }
   .faq-inner {
     padding-block: var(--section-pad-y);
-  }
-  .faq-head {
-    text-align: center;
-    margin-bottom: clamp(32px, 4vw, 48px);
   }
   .faq-grid {
     display: grid;

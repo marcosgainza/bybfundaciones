@@ -84,7 +84,8 @@ import { withBase } from '../lib/url';
   }
   /* Titulo a lo ancho, video grande al medio, texto + botones abajo */
   .hero-inner {
-    --hero-w: min(100%, 980px, calc((100svh - 330px) * 16 / 9));
+    /* El video entra completo bajo el header, sin reservar alto para titulo ni texto */
+    --hero-w: min(100%, 1080px, calc((100svh - var(--header-h) - 60px) * 16 / 9));
     position: relative;
     padding-block: clamp(40px, 5vw, 72px);
     display: flex;
@@ -100,10 +101,11 @@ import { withBase } from '../lib/url';
     width: max(var(--hero-w), 560px);
     max-width: 100%;
     margin-top: clamp(32px, 4vw, 48px);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 20px 40px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 28px;
+    text-align: center;
     position: relative;
     z-index: 1;
   }
@@ -143,22 +145,25 @@ import { withBase } from '../lib/url';
   }
   .hero-lead {
     max-width: 62ch;
-    font-size: clamp(16px, 1.4vw, 18.5px);
-    line-height: 1.6;
+    margin-inline: auto;
+    font-size: clamp(18px, 1.7vw, 22.5px);
+    line-height: 1.55;
     color: rgba(255, 255, 255, 0.88);
     text-shadow: 0 2px 14px rgba(4, 10, 24, 0.35);
   }
   .hero-sub {
-    margin-top: 12px;
-    max-width: 62ch;
-    font-size: 15.5px;
+    margin-top: 16px;
+    max-width: 66ch;
+    margin-inline: auto;
+    font-size: clamp(16.5px, 1.4vw, 19px);
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.7);
     text-shadow: 0 2px 14px rgba(4, 10, 24, 0.35);
   }
   .hero-actions {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
   }
   .hero-actions .btn-ghost {
@@ -222,13 +227,6 @@ import { withBase } from '../lib/url';
     .hero-media,
     .hero-bottom {
       width: 100%;
-    }
-    .hero-bottom {
-      grid-template-columns: 1fr;
-    }
-    .hero-actions {
-      flex-direction: row;
-      flex-wrap: wrap;
     }
     /* En celu el video es chico: el chip va debajo, no encima */
     .hero-chip {

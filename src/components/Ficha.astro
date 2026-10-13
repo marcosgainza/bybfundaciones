@@ -1,0 +1,191 @@
+---
+interface Props {
+  /** Ancla de la sección (la usan los enlaces del menú). */
+  id?: string;
+  /** Rótulo corto, tipo pestaña de fichero. */
+  label: string;
+  /** Título de la sección: es lo que se ve con la ficha cerrada. */
+  title: string;
+}
+
+const { id, label, title } = Astro.props;
+---
+
+<details class="ficha section" id={id}>
+  <summary class="ficha-head">
+    <div class="container">
+      <div class="ficha-glass">
+        <span class="ficha-label">{label}</span>
+        <h2 class="ficha-title">{title}</h2>
+        <span class="ficha-sign" aria-hidden="true"></span>
+      </div>
+    </div>
+  </summary>
+  <div class="ficha-body">
+    <slot />
+  </div>
+</details>
+
+<style>
+  /* Banda del fichero: azul de la marca (continúa la franja de pilares) con luces suaves
+     para que el vidrio tenga qué reflejar */
+  :global(.fichero) {
+    background:
+      radial-gradient(55% 420px at 12% 0%, rgba(245, 166, 35, 0.13), transparent 70%),
+      radial-gradient(50% 460px at 92% 100%, rgba(90, 140, 220, 0.28), transparent 70%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
+    padding-block: clamp(26px, 3.4vw, 44px);
+    display: grid;
+    gap: clamp(12px, 1.4vw, 16px);
+  }
+  .ficha-head {
+    display: block;
+    list-style: none;
+    cursor: pointer;
+  }
+  .ficha-head::-webkit-details-marker {
+    display: none;
+  }
+  .ficha-head:focus-visible {
+    outline: none;
+  }
+  /* Tarjeta de vidrio oscuro */
+  .ficha-glass {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 24px;
+    align-items: center;
+    padding: 0 clamp(18px, 2.4vw, 32px) clamp(20px, 2.3vw, 28px);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.035) 55%, rgba(255, 255, 255, 0.07) 100%);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 20px 40px -26px rgba(0, 0, 0, 0.8);
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .ficha-head:hover .ficha-glass,
+  .ficha-head:focus-visible .ficha-glass,
+  .ficha[open] .ficha-glass {
+    border-color: rgba(245, 166, 35, 0.6);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.17) 0%, rgba(255, 255, 255, 0.06) 55%, rgba(255, 255, 255, 0.1) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.26),
+      0 0 0 1px rgba(245, 166, 35, 0.18),
+      0 22px 44px -24px rgba(0, 0, 0, 0.85);
+  }
+  /* Rótulo: pestaña de fichero colgada del borde superior de la tarjeta */
+  .ficha-label {
+    justify-self: start;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 8px 16px 9px;
+    border-radius: 0 0 7px 7px;
+    box-shadow: 0 6px 18px -8px rgba(245, 166, 35, 0.8);
+  }
+  .ficha-title {
+    grid-column: 1;
+    margin-top: clamp(14px, 1.6vw, 20px);
+    font-weight: 800;
+    font-size: clamp(20px, 2.5vw, 31px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+    text-wrap: balance;
+  }
+  /* Signo + que pasa a – al abrir */
+  .ficha-sign {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    color: #fff;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .ficha-sign::before,
+  .ficha-sign::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 2px;
+    margin: -1px 0 0 -8px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ficha-sign::after {
+    transform: rotate(90deg);
+  }
+  .ficha-head:hover .ficha-sign,
+  .ficha[open] .ficha-sign {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+  .ficha[open] .ficha-sign::after {
+    transform: rotate(0deg);
+  }
+
+  /* El título ya está en la ficha: el contenido arranca con menos aire arriba */
+  .ficha-body {
+    --section-pad-y: clamp(30px, 4vw, 52px);
+    margin-top: clamp(12px, 1.4vw, 16px);
+    background: var(--paper);
+  }
+  .ficha[open] .ficha-body {
+    animation: bbFichaIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes bbFichaIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .ficha-glass {
+      column-gap: 14px;
+    }
+    .ficha-sign {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>
+
+<script>
+  // Los enlaces internos (menú, botones) abren la ficha a la que apuntan
+  const openFicha = (hash: string) => {
+    if (hash.length < 2) return;
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    const ficha = target?.closest<HTMLDetailsElement>('details.ficha');
+    if (ficha) ficha.open = true;
+  };
+
+  document.addEventListener('click', (e) => {
+    const link = (e.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+    if (link) openFicha(link.getAttribute('href')!);
+  });
+  window.addEventListener('hashchange', () => openFicha(location.hash));
+
+  if (location.hash) {
+    openFicha(location.hash);
+    document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
+  }
+</script>

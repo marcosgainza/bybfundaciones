@@ -20,8 +20,6 @@ const cards = [
 <section class="brandsec">
   <div class="brand-bg" aria-hidden="true"></div>
   <div class="container brand-inner">
-    <div class="eyebrow">La marca</div>
-    <h2 class="h2">Cómo nace nuestra empresa</h2>
     <div class="brand-lead">
       <p>
         B&B Fundaciones nace a partir de años de experiencia en ingeniería geotécnica y en
@@ -94,11 +92,11 @@ const cards = [
   }
   .brand-inner {
     position: relative;
-    padding-block: clamp(56px, 7vw, 96px);
+    padding-block: var(--section-pad-y);
     text-align: center;
   }
   .brand-lead {
-    margin: 16px 0 0;
+    margin: 0;
     max-width: none;
     font-size: 16px;
     line-height: 1.65;

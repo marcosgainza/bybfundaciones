@@ -33,12 +33,8 @@ const problems = [
 ];
 ---
 
-<section id="problemas" class="section container problems">
+<section class="container problems">
   <div class="problems-head">
-    <div>
-      <div class="eyebrow">El problema</div>
-      <h2 class="h2">¿Tu propiedad presenta alguno de estos problemas?</h2>
-    </div>
     <p class="problems-intro">
       Estos síntomas pueden ser consecuencia de problemas en el suelo de fundación.
       <span class="mk">Una evaluación técnica realizada a tiempo</span> permite identificar
@@ -76,21 +72,16 @@ const problems = [
 
 <style>
   .problems {
-    padding-top: var(--section-pad-y);
-    padding-bottom: clamp(20px, 3vw, 40px);
+    padding-block: var(--section-pad-y);
   }
   .problems-head {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: clamp(24px, 4vw, 56px);
-    align-items: start;
+    max-width: 72ch;
     margin-bottom: clamp(36px, 4vw, 52px);
   }
   .problems-intro {
     font-size: 16.5px;
     line-height: 1.65;
     color: #3a4150;
-    padding-top: 6px;
   }
   .cards {
     display: grid;
@@ -125,10 +116,6 @@ const problems = [
   }
 
   @media (max-width: 860px) {
-    .problems-head {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
     .cards {
       grid-template-columns: repeat(2, 1fr);
     }
