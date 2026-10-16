@@ -20,12 +20,15 @@ export const site = {
   // Para los links wa.me de Argentina conviene el número SIN el "9" (549 → 54).
   // Con el 9 el chat no abría; sin el 9 funciona. El display de arriba sí lleva el 9.
   whatsapp: '543435715428', // solo números, formato internacional sin + y sin el 9
-  email: 'info@bybingenieria.com.ar',
+  email: 'contacto@bybfundaciones.com.ar',
 
   // --- Ubicación / zona de trabajo (clave para SEO local y GEO) ---
   city: 'Paraná',
   region: 'Entre Ríos',
+  regionCode: 'AR-E',
   country: 'AR',
+  // Coordenadas del centro de Paraná (sin dirección pública del local).
+  geo: { lat: -31.7319, lng: -60.5238 },
   areaServed: ['Paraná', 'Entre Ríos', 'Santa Fe'],
 
   // --- Redes (agregar URLs reales cuando existan) ---

@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { site } from '../data/site';
+import { site, services } from '../data/site';
 import { faqs } from '../data/faq';
 import { withBase } from '../lib/url';
 
@@ -12,49 +12,93 @@ interface Props {
 }
 
 const {
-  title = `${site.name} · Refuerzo de Fundaciones, Micropilotes y Recalce de Cimientos en ${site.city}, ${site.region}`,
+  title = `${site.name} · Refuerzo de Fundaciones y Mejoramiento de Suelos en ${site.city}, ${site.region}`,
   description = site.description,
   path = '/',
 } = Astro.props;
 
 const canonical = new URL(withBase(path), Astro.site).href;
 const ogImage = new URL(withBase('/assets/og-image.jpg'), Astro.site).href;
+const logo = new URL(withBase('/assets/logo/logo-header.png'), Astro.site).href;
+const phoneIntl = `+${site.whatsapp.slice(0, 2)}9${site.whatsapp.slice(2)}`;
 
 // ---------- JSON-LD: negocio local (SEO local + GEO) ----------
 const businessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  '@id': `${site.url}#business`,
+  '@type': ['ProfessionalService', 'HomeAndConstructionBusiness'],
+  '@id': `${site.url}/#business`,
   name: site.name,
+  alternateName: ['B&B Ingeniería', 'B&B Ingeniería de Fundaciones', 'ByB Fundaciones'],
   description: site.description,
+  slogan: site.tagline,
   url: site.url,
+  logo,
   image: ogImage,
-  telephone: site.phoneDisplay,
+  telephone: phoneIntl,
   email: site.email,
   priceRange: '$$',
+  currenciesAccepted: 'ARS',
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.city,
     addressRegion: site.region,
     addressCountry: site.country,
   },
-  areaServed: site.areaServed.map((a) => ({ '@type': 'Place', name: a })),
+  geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng },
+  areaServed: [
+    { '@type': 'City', name: 'Paraná' },
+    { '@type': 'State', name: 'Entre Ríos' },
+    { '@type': 'State', name: 'Santa Fe' },
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    telephone: phoneIntl,
+    email: site.email,
+    areaServed: 'AR',
+    availableLanguage: 'es',
+  },
   founder: site.founders.map((f) => ({ '@type': 'Person', name: f })),
   knowsAbout: [
     'Refuerzo de fundaciones',
-    'Mejoramiento de suelos',
-    'Inyección controlada',
-    'Ingeniería geotécnica',
-    'Estabilización de estructuras',
     'Recalce de fundaciones',
     'Recalce de cimientos',
-    'Micropilotes',
-    'Pilotaje',
     'Mejoramiento de suelos',
+    'Inyección controlada',
+    'Inyección de resinas expansivas',
+    'Detención de asentamientos',
+    'Reparación de grietas por asentamiento',
     'Relleno de oquedades',
-    'Estabilización de estructuras',
-    ],
+    'Estabilización de piscinas',
+    'Estabilización de pisos y plateas',
+    'Ingeniería geotécnica',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de refuerzo de fundaciones y mejoramiento de suelos',
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.text,
+        areaServed: site.areaServed.join(', '),
+        provider: { '@id': `${site.url}/#business` },
+      },
+    })),
+  },
   sameAs: Object.values(site.social).filter((u) => u && u !== '#'),
+};
+
+// ---------- JSON-LD: sitio web ----------
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site.url}/#website`,
+  url: site.url,
+  name: site.name,
+  inLanguage: site.locale,
+  publisher: { '@id': `${site.url}/#business` },
 };
 
 // ---------- JSON-LD: preguntas frecuentes (rich results + GEO) ----------
@@ -81,8 +125,11 @@ const faqSchema = {
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content={site.name} />
     <meta name="theme-color" content="#0d2b5b" />
-    <meta name="geo.region" content="AR-E" />
+    <meta name="geo.region" content={site.regionCode} />
     <meta name="geo.placename" content={`${site.city}, ${site.region}`} />
+    <meta name="geo.position" content={`${site.geo.lat};${site.geo.lng}`} />
+    <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lng}`} />
+    <link rel="alternate" type="text/plain" href={withBase('/llms.txt')} title="Resumen para modelos de IA" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -92,6 +139,9 @@ const faqSchema = {
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="es_AR" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} · ${site.tagline}`} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -113,6 +163,7 @@ const faqSchema = {
 
     <!-- Datos estructurados -->
     <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
   <body>
