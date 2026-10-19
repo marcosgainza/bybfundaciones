@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { site, services } from '../data/site';
-import { faqs } from '../data/faq';
+import { faqs, type FaqItem } from '../data/faq';
 import { withBase } from '../lib/url';
 
 interface Props {
@@ -9,12 +9,18 @@ interface Props {
   description?: string;
   /** Ruta relativa de la página, ej: '/' o '/servicios'. */
   path?: string;
+  /** Preguntas para el JSON-LD FAQPage de esta página (por defecto, las de la home). */
+  faqItems?: FaqItem[];
+  /** JSON-LD extra propio de la página (servicio, migas de pan, etc.). */
+  schemas?: object[];
 }
 
 const {
   title = `${site.name} · Refuerzo de Fundaciones y Mejoramiento de Suelos en ${site.city}, ${site.region}`,
   description = site.description,
   path = '/',
+  faqItems = faqs,
+  schemas = [],
 } = Astro.props;
 
 const canonical = new URL(withBase(path), Astro.site).href;
@@ -105,7 +111,7 @@ const websiteSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
+  mainEntity: faqItems.map((f) => ({
     '@type': 'Question',
     name: f.q,
     acceptedAnswer: { '@type': 'Answer', text: f.a },
@@ -165,6 +171,7 @@ const faqSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    {schemas.map((sc) => <script type="application/ld+json" set:html={JSON.stringify(sc)} />)}
   </head>
   <body>
     <slot />

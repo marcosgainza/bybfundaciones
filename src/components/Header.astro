@@ -3,17 +3,17 @@ import { site } from '../data/site';
 import { withBase } from '../lib/url';
 
 const nav = [
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#metodologia', label: 'Metodología' },
-  { href: '#casos', label: 'Casos' },
-  { href: '#faq', label: 'Preguntas' },
-  { href: '#nosotros', label: 'Nosotros' },
+  { href: withBase('/#servicios'), label: 'Servicios' },
+  { href: withBase('/#metodologia'), label: 'Metodología' },
+  { href: withBase('/#casos'), label: 'Casos' },
+  { href: withBase('/#faq'), label: 'Preguntas' },
+  { href: withBase('/#nosotros'), label: 'Nosotros' },
 ];
 ---
 
 <header class="hdr">
   <div class="hdr-inner container">
-    <a href="#inicio" class="brand" aria-label={`${site.name} — inicio`}>
+    <a href={withBase('/#inicio')} class="brand" aria-label={`${site.name} — inicio`}>
       <img
         src={withBase('/assets/logo/logo-header.png')}
         alt={site.name}

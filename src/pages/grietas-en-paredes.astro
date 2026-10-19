@@ -1,0 +1,434 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+import { site } from '../data/site';
+import type { FaqItem } from '../data/faq';
+import { withBase } from '../lib/url';
+
+// Página temática: pensada para quien busca "grietas en las paredes" en Google o le
+// pregunta a una IA. Responde la duda concreta y lleva a la evaluación técnica.
+
+const path = '/grietas-en-paredes/';
+const pageUrl = `${site.url}${path}`;
+const title = `Grietas en las paredes: cuándo son un problema de fundación · ${site.name} (${site.city})`;
+const description =
+  'Cómo reconocer si las grietas de tu casa vienen de un asentamiento de la fundación, por qué aparecen y cómo se reparan sin demoler, mediante inyección controlada. Paraná, Entre Ríos y Santa Fe.';
+
+const waText = encodeURIComponent(
+  'Hola, tengo grietas en las paredes de mi casa y quería consultar por una evaluación técnica.'
+);
+const waLink = `https://wa.me/${site.whatsapp}?text=${waText}`;
+
+const alertas = [
+  ['Grietas en diagonal', 'que nacen en las esquinas de puertas y ventanas y suben o bajan inclinadas.'],
+  ['Grietas "en escalera"', 'que siguen las juntas de los ladrillos.'],
+  ['Grietas más anchas en un extremo', 'que en el otro: abiertas arriba o abajo, como una cuña.'],
+  ['Grietas que crecen', 'o que vuelven a aparecer después de haberlas tapado.'],
+  ['Puertas o ventanas que dejaron de cerrar', 'o que rozan en el marco.'],
+  ['Pisos desnivelados o hundidos', 'y separaciones entre la pared y el piso o el techo.'],
+];
+
+const causas = [
+  ['Suelos arcillosos', 'En Paraná, buena parte de Entre Ríos y Santa Fe es común encontrar arcillas que se hinchan con la humedad y se contraen al secarse. Ese movimiento del suelo se transmite a la fundación.'],
+  ['Pérdidas de agua', 'Un caño roto, una cámara séptica o un desagüe que filtra ablandan el suelo debajo de un sector de la casa, y ese sector se asienta más que el resto.'],
+  ['Vacíos debajo de la fundación', 'El agua puede lavar el suelo y dejar huecos (oquedades) donde la fundación o el contrapiso pierden apoyo.'],
+  ['Raíces de árboles cercanos', 'Secan el suelo de forma desigual, sobre todo en épocas de sequía.'],
+  ['Fundación insuficiente para ese suelo', 'Cimientos poco profundos o pensados para un terreno más firme del que realmente hay.'],
+];
+
+const pasos = [
+  ['Marcá la grieta', 'Hacé una raya fina en cada punta con lápiz y anotá la fecha. Si en unas semanas pasa la marca, la grieta sigue activa.'],
+  ['Sacale fotos con una regla', 'Siempre desde el mismo lugar, para comparar el ancho en el tiempo.'],
+  ['Revisá si hay pérdidas de agua', 'Canillas, cañerías, desagües y la cámara séptica cerca del sector afectado.'],
+  ['No la tapes solo con enduido', 'Si la causa es el suelo, la grieta vuelve a abrirse. Primero hay que estabilizar y después reparar.'],
+  ['Pedí una evaluación técnica', 'Un ingeniero puede determinar si el origen es la fundación y qué intervención conviene.'],
+];
+
+const faqItems: FaqItem[] = [
+  {
+    q: '¿Una grieta en diagonal en la pared es grave?',
+    a: 'Las grietas en diagonal que nacen en las esquinas de puertas y ventanas suelen ser señal de que una parte de la construcción se está moviendo más que otra, algo típico de un asentamiento de la fundación. No siempre es una urgencia, pero conviene hacerla evaluar, sobre todo si crece o aparece junto con puertas que no cierran o pisos desnivelados.',
+  },
+  {
+    q: '¿Cómo sé si una grieta es superficial o de la fundación?',
+    a: 'Las fisuras finas, en forma de red o "mapa" sobre el revoque, suelen ser superficiales y deberse a la retracción del material. Las grietas que atraviesan la pared, que son más anchas en un extremo, que siguen una diagonal o que siguen creciendo suelen tener origen estructural o en el suelo. La forma segura de saberlo es una evaluación técnica.',
+  },
+  {
+    q: '¿Alcanza con rellenar la grieta con enduido o sellador?',
+    a: 'Si la grieta viene de un movimiento de la fundación, no. El relleno tapa el síntoma pero el movimiento continúa y la grieta vuelve a abrirse. Primero hay que estabilizar el suelo y la fundación; después se reparan las grietas con trabajos de terminación.',
+  },
+  {
+    q: '¿Hay que demoler para arreglar una fundación con grietas?',
+    a: 'En muchos casos no. Con inyección controlada se mejora el suelo de apoyo debajo de la fundación desde perforaciones puntuales, sin demoler y generalmente con la vivienda habitada. En viviendas particulares la intervención suele completarse en pocos días.',
+  },
+  {
+    q: '¿Cuánto cuesta reparar una fundación con grietas?',
+    a: 'Depende del tamaño de la construcción, del tipo de suelo y de cuánto se haya movido la estructura. Por eso primero se hace una evaluación técnica y, con ese diagnóstico, se arma un presupuesto específico para la obra.',
+  },
+  {
+    q: '¿Dónde trabaja B&B Fundaciones?',
+    a: 'En la ciudad de Paraná, el resto de la provincia de Entre Ríos y la ciudad de Santa Fe.',
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: title,
+    description,
+    inLanguage: site.locale,
+    isPartOf: { '@id': `${site.url}/#website` },
+    about: { '@id': `${pageUrl}#service` },
+    primaryImageOfPage: new URL(withBase('/assets/images/grieta1.jpg'), site.url).href,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${pageUrl}#service`,
+    name: 'Reparación de grietas por asentamiento de fundaciones',
+    serviceType: 'Refuerzo de fundaciones',
+    description:
+      'Evaluación técnica de grietas en paredes y estabilización de la fundación mediante inyección controlada, sin demoler, para detener los asentamientos que las originan.',
+    provider: { '@id': `${site.url}/#business` },
+    areaServed: [
+      { '@type': 'City', name: 'Paraná' },
+      { '@type': 'State', name: 'Entre Ríos' },
+      { '@type': 'City', name: 'Santa Fe' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Grietas en paredes', item: pageUrl },
+    ],
+  },
+];
+---
+
+<Base title={title} description={description} path={path} faqItems={faqItems} schemas={schemas}>
+  <Header />
+  <main class="gp">
+    <section id="inicio" class="gp-hero">
+      <div class="container gp-hero-grid">
+        <div>
+          <nav class="gp-crumbs" aria-label="Migas de pan">
+            <a href={withBase('/')}>Inicio</a> <span aria-hidden="true">/</span> Grietas en paredes
+          </nav>
+          <h1 class="gp-h1">Grietas en las paredes: cuándo son un problema de fundación</h1>
+          <p class="gp-lead">
+            Si a tu casa le aparecieron grietas que crecen, puertas que no cierran o pisos
+            desnivelados, el problema puede estar en el suelo debajo de la fundación. Te
+            explicamos cómo reconocerlo y cómo se soluciona <strong>sin demoler</strong>.
+          </p>
+          <div class="gp-ctas">
+            <a class="btn btn-accent cta-pulse" href={waLink} target="_blank" rel="noopener">
+              Consultar por WhatsApp
+            </a>
+            <a class="btn gp-btn-ghost" href="#que-hacer">Qué hacer ahora</a>
+          </div>
+        </div>
+        <figure class="gp-fig">
+          <img
+            src={withBase('/assets/images/grieta1.jpg')}
+            alt="Vivienda con grietas en diagonal en la pared, típicas de un asentamiento de la fundación"
+            width="683"
+            height="447"
+            loading="eager"
+          />
+          <figcaption>Grietas en diagonal y escalonadas: un patrón típico de asentamiento.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="container gp-sec">
+      <div class="gp-answer">
+        <div class="eyebrow">En pocas palabras</div>
+        <p>
+          Una grieta es señal de un problema de fundación cuando atraviesa la pared, va en
+          diagonal desde puertas o ventanas, es más ancha en un extremo o sigue creciendo. En
+          esos casos la causa suele ser un <strong>asentamiento del suelo</strong> y taparla no
+          alcanza: hay que estabilizar la fundación. {site.name}, empresa de ingeniería de
+          {site.city}, lo resuelve mediante <strong>inyección controlada</strong>, sin demoler y
+          con la vivienda habitada.
+        </p>
+      </div>
+    </section>
+
+    <section class="container gp-sec">
+      <h2 class="h2">Señales de que la grieta viene de la fundación</h2>
+      <ul class="gp-list">
+        {alertas.map(([t, d]) => <li><strong>{t}</strong> {d}</li>)}
+      </ul>
+      <p class="gp-note">
+        En cambio, las fisuras muy finas, en forma de red sobre el revoque, o las que aparecen
+        justo en la unión entre dos materiales distintos, suelen ser superficiales. Ante la
+        duda, conviene una evaluación.
+      </p>
+    </section>
+
+    <section class="gp-band">
+      <div class="container gp-sec">
+        <h2 class="h2">¿Por qué aparecen las grietas por asentamiento?</h2>
+        <div class="gp-cards">
+          {
+            causas.map(([t, d]) => (
+              <div class="gp-card">
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="que-hacer" class="container gp-sec section">
+      <h2 class="h2">Qué hacer si tenés grietas en las paredes</h2>
+      <ol class="gp-steps">
+        {pasos.map(([t, d]) => <li><strong>{t}.</strong> {d}</li>)}
+      </ol>
+    </section>
+
+    <section class="gp-band">
+      <div class="container gp-sec gp-two">
+        <div>
+          <h2 class="h2">Cómo lo solucionamos</h2>
+          <p class="gp-p">
+            Primero hacemos una <strong>evaluación técnica</strong> de la estructura, el terreno y
+            las grietas para entender el origen del movimiento. Con ese diagnóstico definimos
+            dónde inyectar y con qué metodología.
+          </p>
+          <p class="gp-p">
+            La <strong>inyección controlada</strong> mejora el suelo de apoyo debajo de la
+            fundación a través de perforaciones puntuales. No hace falta demoler, en general no
+            hay que dejar la casa y en viviendas particulares suele completarse en pocos días.
+            Una vez estabilizada la estructura, las grietas se reparan y no vuelven a abrirse
+            por la misma causa.
+          </p>
+          <a class="gp-link" href={withBase('/#metodologia')}>Ver nuestra metodología →</a>
+        </div>
+        <article class="gp-case">
+          <div class="eyebrow">Caso real · Paraná</div>
+          <h3>Refuerzo de fundaciones en vivienda unifamiliar</h3>
+          <p><strong>Situación inicial.</strong> Fisuras en distintos muros, desniveles en sectores del piso y asentamientos diferenciales que comprometían la estabilidad.</p>
+          <p><strong>Intervención.</strong> Plan de refuerzo mediante inyecciones controladas para consolidar el suelo de apoyo y mejorar la estabilidad de las fundaciones.</p>
+          <p><strong>Resultado.</strong> Estructura estabilizada y detención de los asentamientos, permitiendo la posterior reparación de las fisuras.</p>
+          <a class="gp-link" href={withBase('/#casos')}>Ver más obras →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="container gp-sec">
+      <h2 class="h2">Preguntas frecuentes sobre grietas en paredes</h2>
+      <div class="gp-faq">
+        {
+          faqItems.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+
+    <Contact />
+  </main>
+  <Footer />
+  <WhatsappFloat />
+</Base>
+
+<style>
+  .gp-hero {
+    background:
+      radial-gradient(50% 420px at 90% 0%, rgba(245, 166, 35, 0.16), transparent 70%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
+    color: #fff;
+    padding-block: clamp(40px, 6vw, 84px);
+  }
+  .gp-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+  }
+  .gp-crumbs {
+    font-size: 13px;
+    opacity: 0.75;
+    margin-bottom: 16px;
+  }
+  .gp-crumbs a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  .gp-h1 {
+    font-weight: 800;
+    font-size: clamp(30px, 4.2vw, 50px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+  .gp-lead {
+    margin-top: 18px;
+    font-size: clamp(16px, 1.4vw, 18px);
+    line-height: 1.6;
+    opacity: 0.92;
+    max-width: 58ch;
+  }
+  .gp-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .gp-btn-ghost {
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    color: #fff;
+  }
+  .gp-btn-ghost:hover {
+    border-color: #fff;
+  }
+  .gp-fig img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  }
+  .gp-fig figcaption {
+    font-size: 13px;
+    opacity: 0.75;
+    margin-top: 10px;
+  }
+
+  .gp-sec {
+    padding-block: clamp(40px, 5.5vw, 72px);
+  }
+  .gp-band {
+    background: var(--mist);
+  }
+  .gp-answer {
+    border-left: 4px solid var(--accent);
+    background: #fff;
+    padding: clamp(20px, 2.6vw, 32px);
+    border-radius: 6px;
+    max-width: 80ch;
+  }
+  .gp-answer p {
+    margin-top: 10px;
+    font-size: clamp(16px, 1.35vw, 18px);
+    line-height: 1.65;
+  }
+  .gp-list,
+  .gp-steps {
+    margin-top: 24px;
+    display: grid;
+    gap: 12px;
+    max-width: 80ch;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  .gp-list li::marker {
+    color: var(--accent-strong);
+  }
+  .gp-steps li::marker {
+    color: var(--accent-strong);
+    font-weight: 800;
+  }
+  .gp-note,
+  .gp-p {
+    margin-top: 18px;
+    max-width: 80ch;
+    line-height: 1.65;
+    color: var(--gray);
+  }
+  .gp-p {
+    color: var(--ink);
+  }
+  .gp-cards {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .gp-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px;
+  }
+  .gp-card h3 {
+    color: var(--navy);
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .gp-card p {
+    margin-top: 8px;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .gp-two {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+  .gp-case {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: clamp(20px, 2.4vw, 30px);
+  }
+  .gp-case h3 {
+    margin-top: 8px;
+    color: var(--navy);
+    font-size: 19px;
+    font-weight: 800;
+  }
+  .gp-case p {
+    margin-top: 10px;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .gp-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-weight: 700;
+    color: var(--accent-strong);
+  }
+  .gp-faq {
+    margin-top: 24px;
+    display: grid;
+    gap: 10px;
+    max-width: 88ch;
+  }
+  .gp-faq details {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    padding: 16px 20px;
+  }
+  .gp-faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .gp-faq details p {
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 860px) {
+    .gp-hero-grid,
+    .gp-two {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

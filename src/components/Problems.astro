@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../lib/url';
+
 const problems = [
   {
     title: 'Grietas que crecen',
@@ -67,10 +69,19 @@ const problems = [
 
   <div class="problems-cta">
     <a href="#contacto" class="btn btn-accent cta-pulse">Solicitar una evaluación →</a>
+    <a href={withBase('/grietas-en-paredes/')} class="problems-more">¿Tenés grietas en las paredes? Cómo saber si es la fundación →</a>
   </div>
 </section>
 
 <style>
+  .problems-more {
+    display: inline-block;
+    margin-left: 18px;
+    font-weight: 700;
+    color: var(--accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
   .problems {
     padding-block: var(--section-pad-y);
   }
