@@ -175,8 +175,12 @@ const year = new Date().getFullYear();
   }
   @media (max-width: 460px) {
     .ftr-inner {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 28px;
     }
+  }
+  @media (max-width: 360px) {
+    .ftr-brand-text .bl-title { font-size: 14px; letter-spacing: 0.22em; padding-left: 0.22em; }
+    .ftr-brand-text .bl-sub { font-size: 7px; letter-spacing: 0.16em; padding-left: 0.16em; }
   }
 </style>
